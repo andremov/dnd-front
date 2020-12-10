@@ -1,0 +1,274 @@
+import React, { Fragment, useState } from "react";
+import { abilities, alignments, classes, races } from "../Utils/Data";
+import { RollDie } from "../Utils/Functions";
+
+export function CreatePlayer( { eventCallback } ) {
+    const [ formData, setFormData ] = useState({
+        name : '',
+        family : '',
+        codename : '',
+        
+        stats : [ 0, 0, 0, 0, 0, 0 ],
+        
+        alignment : -1,
+        race : -1,
+        char_class : -1,
+        
+        height : 0,
+        age : 0,
+    })
+    const [ section, setSection ] = useState(0)
+    const [ rolls, setRolls ] = useState([
+        [ 0, 0, 0, 0 ], [ 0, 0, 0, 0 ], [ 0, 0, 0, 0 ], [ 0, 0, 0, 0 ], [ 0, 0, 0, 0 ], [ 0, 0, 0, 0 ],
+    ])
+    const [ rolling, setRolling ] = useState(false)
+    
+    function handleChange( e ) {
+        if ( e.target.name === 'race' || e.target.name === 'char_class' ) {
+            if ( e.target.value === '-1' ) {
+                eventCallback({ event_name : 'close' })
+            } else {
+                eventCallback({
+                    event_name : e.target.name + '-info',
+                    event_window : 50,
+                    event_data : {
+                        [e.target.name] : e.target.value
+                    }
+                })
+            }
+        }
+        setFormData({
+            ...formData,
+            [e.target.name] : e.target.value
+        })
+    }
+    
+    function rollAbility( ability, index = 0, missing_rolls = 20 ) {
+        setRolling(true)
+        let new_rolls = [ ...rolls ]
+        new_rolls[ability][index] = RollDie()
+        setRolls(new_rolls)
+        if ( missing_rolls === 0 ) {
+            if ( index === 3 ) {
+                let new_stats = [ ...formData.stats ]
+                new_stats[ability] = new_rolls[ability][0] + new_rolls[ability][1]
+                new_stats[ability] += new_rolls[ability][2] + new_rolls[ability][3] - Math.min(...new_rolls[ability])
+                setFormData({
+                    ...formData,
+                    stats : new_stats
+                })
+                setRolling(false)
+            } else {
+                setTimeout(() => rollAbility(ability, index + 1), 50)
+            }
+        } else {
+            setTimeout(() => rollAbility(ability, index, missing_rolls - 1), 50)
+        }
+    }
+    
+    function validSection() {
+        return (
+            !!formData.name &&
+            !!formData.codename &&
+            formData.alignment !== -1 &&
+            formData.race !== -1 &&
+            formData.char_class !== -1 &&
+            formData.age < races[formData.race].age.max &&
+            formData.age > races[formData.race].age.min &&
+            formData.height < races[formData.race].height.max &&
+            formData.height > races[formData.race].height.min
+        )
+    }
+    
+    function validSend() {
+        return (
+            !!formData.stats[0] &&
+            !!formData.stats[1] &&
+            !!formData.stats[2] &&
+            !!formData.stats[3] &&
+            !!formData.stats[4] &&
+            !!formData.stats[5]
+        )
+    }
+    
+    return <form className={'enter-form'} onSubmit={e => {
+        e.preventDefault()
+    }}>
+        <div className={'section' + (section === 0 ? '' : ' hidden')}>
+            <input
+                placeholder={'Codename'}
+                name={'codename'}
+                value={formData.codename}
+                onChange={handleChange}
+            />
+            
+            <div className={'group'}>
+                <input
+                    placeholder={'Name'}
+                    name={'name'}
+                    value={formData.name}
+                    onChange={handleChange}
+                />
+                <input
+                    placeholder={'Family Name'}
+                    name={'family'}
+                    value={formData.family}
+                    onChange={handleChange}
+                />
+            </div>
+            
+            <div className={'group'}>
+                <select
+                    name={'race'}
+                    value={formData.race}
+                    onChange={handleChange}
+                >
+                    <option value={-1}>Race</option>
+                    {
+                        races.map(( item, i ) => {
+                            return <option key={i} value={i}>
+                                {item.name}
+                            </option>
+                        })
+                    }
+                </select>
+                
+                <select
+                    name={'char_class'}
+                    value={formData.char_class}
+                    onChange={handleChange}
+                >
+                    <option value={-1}>Class</option>
+                    {
+                        classes.map(( item, i ) => {
+                            return <option key={i} value={i}>
+                                {item.name}
+                            </option>
+                        })
+                    }
+                </select>
+            </div>
+            
+            <select
+                name={'alignment'}
+                value={formData.alignment}
+                onChange={handleChange}
+            >
+                <option value={-1}>Alignment</option>
+                {
+                    alignments.map(( item, i ) => {
+                        return <option key={i} value={i}>
+                            {item.name}
+                        </option>
+                    })
+                }
+            </select>
+            
+            <div style={{ display : 'flex', flexDirection : 'column', alignItems : 'center' }}>
+                <div>
+                    Height:
+                    <input
+                        className={'short'}
+                        placeholder={'0'}
+                        name={'height'}
+                        value={formData.height}
+                        onChange={handleChange}
+                    />
+                    cm.
+                </div>
+                <input
+                    type={'range'}
+                    name={'height'}
+                    disabled={formData.race === -1}
+                    min={races[formData.race]?.height.min}
+                    max={races[formData.race]?.height.max}
+                    value={formData.height}
+                    onChange={handleChange}
+                />
+            </div>
+            
+            <div style={{ display : 'flex', flexDirection : 'column', alignItems : 'center' }}>
+                <div>
+                    Age:
+                    <input
+                        className={'short'}
+                        placeholder={'0'}
+                        name={'age'}
+                        value={formData.age}
+                        onChange={handleChange}
+                    />
+                    years
+                </div>
+                <input
+                    type={'range'}
+                    name={'age'}
+                    disabled={formData.race === -1}
+                    min={races[formData.race]?.age.min}
+                    max={races[formData.race]?.age.max}
+                    value={formData.age}
+                    onChange={handleChange}
+                />
+            </div>
+            
+            <button
+                className={'primary'}
+                children={'Next'}
+                onClick={() => {
+                    if ( validSection() ) {
+                        setSection(1)
+                    }
+                }}
+            />
+        </div>
+        <div className={'color-bar'} />
+        <div className={'section' + (section === 1 ? '' : ' hidden')}>
+            
+            <h1>
+                Abilities
+            </h1>
+            
+            {abilities.map(( item, i ) => {
+                return <div className={'ability-entry'} key={i}>
+                    <span style={{ width : '100px' }}>
+                        {item.name}
+                    </span>
+                    <span>
+                        {rolls[i].map(( item, i ) => {
+                            return <Fragment key={i}>
+                                {item} {i + 1 < rolls[i].length ? ' - ' : ''}
+                            </Fragment>
+                        })}
+                        
+                    </span>
+                    <button
+                        disabled={formData.stats[i] !== 0}
+                        className={'primary' + (formData.stats[i] === 0 ? '' : ' success')}
+                        children={formData.stats[i] === 0 ? 'Roll' : formData.stats[i]}
+                        onClick={() => {
+                            if ( !rolling ) {
+                                rollAbility(i)
+                            }
+                        }}
+                    />
+                </div>
+            })}
+            
+            <div className={'group'}>
+                <button
+                    className={'secondary'}
+                    children={'Back'}
+                    onClick={() => setSection(0)}
+                />
+                <button
+                    className={'primary'}
+                    children={'Crear'}
+                    onClick={() => {
+                        if ( validSend() ) {
+                            eventCallback({ event_name : 'create-player', event_data : formData })
+                        }
+                    }}
+                />
+            </div>
+        </div>
+    </form>
+}
