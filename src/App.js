@@ -6,6 +6,9 @@ import { CreatePlayer } from "./Components/CreatePlayer";
 import { RaceInfo } from "./Components/RaceInfo";
 import { ClassInfo } from "./Components/ClassInfo";
 import { ExitButton } from "./Components/ExitButton";
+import { Gem } from "./Components/Gem";
+import { Header } from "./Components/Header";
+import { AlignmentInfo } from "./Components/AlignmentInfo";
 
 export class App extends Component {
     
@@ -61,11 +64,21 @@ export class App extends Component {
                 })
                 setTimeout(() => this.finishLoading(event_window), 1000)
                 break;
-            case 'char_class-info':
+            case 'class-info':
                 window_values[event_window] = 1
                 window_destinations[event_window] = 5
                 window_data[event_window] = event_data
                 
+                this.setState({
+                    window_values, window_destinations, window_data
+                })
+                setTimeout(() => this.finishLoading(event_window), 1000)
+                break;
+            case 'alignment-info':
+                window_values[event_window] = 1
+                window_destinations[event_window] = 6
+                window_data[event_window] = event_data
+        
                 this.setState({
                     window_values, window_destinations, window_data
                 })
@@ -93,7 +106,8 @@ export class App extends Component {
                 }
                 break;
             case 'create-player':
-                console.log(event_data)
+                let player_data = event_data;
+                console.log(player_data)
                 break;
         }
     }
@@ -117,6 +131,7 @@ export class App extends Component {
         
         return (
             <Fragment>
+                <Header callback={this.handleEvent} />
                 {w_val.map(( item, i ) => {
                     
                     return <div className={'App ' + item.app_name} key={i}>
@@ -158,6 +173,10 @@ function ParseContent( props ) {
             />
         case 5:
             return <ClassInfo
+                {...props}
+            />
+        case 6:
+            return <AlignmentInfo
                 {...props}
             />
         default:
