@@ -1,15 +1,12 @@
 @import "variables";
 
 #root {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
   max-width: 100vw;
   min-height: calc(100vh - 70px);
   padding-top: 70px;
   height: fit-content;
   background-color: #476b85;
+  display: flex;
 }
 
 body {
@@ -34,6 +31,9 @@ header {
   color: white;
   background: linear-gradient(180deg, #00000070 50%, #3b3b3b70 90%, #00000070 150%);
   z-index: 10;
+  padding-right: 10px;
+  padding-left: 10px;
+  box-sizing: border-box;
 
   > .header-item {
     cursor: pointer;
@@ -63,10 +63,13 @@ header {
       background-color: #00000070;
       padding-top: 5px;
       display: none;
+      border-bottom-left-radius: 10px;
+      border-bottom-right-radius: 10px;
+      overflow: hidden;
       //position: absolute;
 
       > .sub-item {
-        padding: 5px;
+        padding: 5px 5px 5px 10px;
         cursor: pointer;
         border-bottom: 1px solid gray;
 

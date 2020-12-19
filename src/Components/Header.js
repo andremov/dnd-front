@@ -37,7 +37,6 @@ export function Header( { callback } ) {
                                     onClick={
                                         () => callback({
                                             event_name : item.window_type,
-                                            event_window : 50,
                                             event_data : { item_id : item2.id }
                                         })
                                     }
