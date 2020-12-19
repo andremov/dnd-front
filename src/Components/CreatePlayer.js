@@ -94,41 +94,73 @@ export function CreatePlayer( { eventCallback } ) {
         )
     }
     
-    return <form className={'enter-form'} onSubmit={e => {
-        e.preventDefault()
-    }}>
-        <div className={'section' + (section === 0 ? '' : ' hidden')}>
-            <input
-                placeholder={'Codename'}
-                name={'codename'}
-                value={formData.codename}
-                onChange={handleChange}
-            />
-            
-            <div className={'group'}>
+    return <div className={'new-player'}>
+        <form className={'enter-form'} onSubmit={e => {
+            e.preventDefault()
+        }}>
+            <div className={'section' + (section === 0 ? '' : ' hidden')}>
                 <input
-                    placeholder={'Name'}
-                    name={'name'}
-                    value={formData.name}
+                    placeholder={'Codename'}
+                    name={'codename'}
+                    value={formData.codename}
                     onChange={handleChange}
                 />
-                <input
-                    placeholder={'Family Name'}
-                    name={'family'}
-                    value={formData.family}
-                    onChange={handleChange}
-                />
-            </div>
-            
-            <div className={'group'}>
+                
+                <div className={'group'}>
+                    <input
+                        placeholder={'Name'}
+                        name={'name'}
+                        value={formData.name}
+                        onChange={handleChange}
+                    />
+                    <input
+                        placeholder={'Family Name'}
+                        name={'family'}
+                        value={formData.family}
+                        onChange={handleChange}
+                    />
+                </div>
+                
+                <div className={'group'}>
+                    <select
+                        name={'race'}
+                        value={formData.race}
+                        onChange={handleChange}
+                    >
+                        <option value={-1}>Race</option>
+                        {
+                            races.map(( item, i ) => {
+                                return <option key={i} value={i}>
+                                    {item.name}
+                                </option>
+                            })
+                        }
+                    </select>
+                    
+                    <select
+                        name={'char_class'}
+                        value={formData.char_class}
+                        onChange={handleChange}
+                    >
+                        <option value={-1}>Class</option>
+                        {
+                            classes.map(( item, i ) => {
+                                return <option key={i} value={i}>
+                                    {item.name}
+                                </option>
+                            })
+                        }
+                    </select>
+                </div>
+                
                 <select
-                    name={'race'}
-                    value={formData.race}
+                    name={'alignment'}
+                    value={formData.alignment}
                     onChange={handleChange}
                 >
-                    <option value={-1}>Race</option>
+                    <option value={-1}>Alignment</option>
                     {
-                        races.map(( item, i ) => {
+                        alignments.map(( item, i ) => {
                             return <option key={i} value={i}>
                                 {item.name}
                             </option>
@@ -136,107 +168,76 @@ export function CreatePlayer( { eventCallback } ) {
                     }
                 </select>
                 
-                <select
-                    name={'char_class'}
-                    value={formData.char_class}
-                    onChange={handleChange}
-                >
-                    <option value={-1}>Class</option>
-                    {
-                        classes.map(( item, i ) => {
-                            return <option key={i} value={i}>
-                                {item.name}
-                            </option>
-                        })
-                    }
-                </select>
-            </div>
-            
-            <select
-                name={'alignment'}
-                value={formData.alignment}
-                onChange={handleChange}
-            >
-                <option value={-1}>Alignment</option>
-                {
-                    alignments.map(( item, i ) => {
-                        return <option key={i} value={i}>
-                            {item.name}
-                        </option>
-                    })
-                }
-            </select>
-            
-            <div style={{ display : 'flex', flexDirection : 'column', alignItems : 'center' }}>
-                <div>
-                    Height:
+                <div style={{ display : 'flex', flexDirection : 'column', alignItems : 'center' }}>
+                    <div>
+                        Height:
+                        <input
+                            className={'short'}
+                            placeholder={'0'}
+                            name={'height'}
+                            value={formData.height}
+                            onChange={handleChange}
+                        />
+                        cm.
+                    </div>
                     <input
-                        className={'short'}
-                        placeholder={'0'}
+                        type={'range'}
                         name={'height'}
+                        disabled={formData.race === -1}
+                        min={races[formData.race]?.height.min}
+                        max={races[formData.race]?.height.max}
                         value={formData.height}
                         onChange={handleChange}
                     />
-                    cm.
                 </div>
-                <input
-                    type={'range'}
-                    name={'height'}
-                    disabled={formData.race === -1}
-                    min={races[formData.race]?.height.min}
-                    max={races[formData.race]?.height.max}
-                    value={formData.height}
-                    onChange={handleChange}
-                />
-            </div>
-            
-            <div style={{ display : 'flex', flexDirection : 'column', alignItems : 'center' }}>
-                <div>
-                    Age:
+                
+                <div style={{ display : 'flex', flexDirection : 'column', alignItems : 'center' }}>
+                    <div>
+                        Age:
+                        <input
+                            className={'short'}
+                            placeholder={'0'}
+                            name={'age'}
+                            value={formData.age}
+                            onChange={handleChange}
+                        />
+                        years
+                    </div>
                     <input
-                        className={'short'}
-                        placeholder={'0'}
+                        type={'range'}
                         name={'age'}
+                        disabled={formData.race === -1}
+                        min={races[formData.race]?.age.min}
+                        max={races[formData.race]?.age.max}
                         value={formData.age}
                         onChange={handleChange}
                     />
-                    years
                 </div>
-                <input
-                    type={'range'}
-                    name={'age'}
-                    disabled={formData.race === -1}
-                    min={races[formData.race]?.age.min}
-                    max={races[formData.race]?.age.max}
-                    value={formData.age}
-                    onChange={handleChange}
+                
+                <button
+                    className={'primary'}
+                    children={'Next'}
+                    disabled={!validSection()}
+                    onClick={() => {
+                        if ( validSection() ) {
+                            setSection(1)
+                        }
+                    }}
                 />
             </div>
-            
-            <button
-                className={'primary'}
-                children={'Next'}
-                disabled={!validSection()}
-                onClick={() => {
-                    if ( validSection() ) {
-                        setSection(1)
-                    }
-                }}
-            />
-        </div>
-        <div className={'color-bar'} />
-        <div className={'section' + (section === 1 ? '' : ' hidden')}>
-            
-            <h1>
-                Abilities
-            </h1>
-            
-            {abilities.map(( item, i ) => {
-                return <div className={'ability-entry'} key={i}>
+            <div className={'color-bar'} />
+            <div className={'section' + (section === 1 ? '' : ' hidden')}>
+                
+                <h1>
+                    Abilities
+                </h1>
+                
+                {abilities.map(( item, i ) => {
+                    return <div className={'ability-entry'} key={i}>
                     <span style={{ width : '100px' }}>
                         {item.name}
                     </span>
-                    <span>
+                        <span>
                         {rolls[i].map(( item, i ) => {
                             return <Fragment key={i}>
                                 {item} {i + 1 < rolls[i].length ? ' - ' : ''}
@@ -244,40 +245,41 @@ export function CreatePlayer( { eventCallback } ) {
                         })}
                         
                     </span>
+                        <button
+                            disabled={formData.stats[i] !== 0}
+                            className={'primary' + (formData.stats[i] === 0 ? '' : ' success')}
+                            children={formData.stats[i] === 0 ? 'Roll' : formData.stats[i]}
+                            onClick={() => {
+                                if ( !rolling ) {
+                                    rollAbility(i)
+                                }
+                            }}
+                        />
+                    </div>
+                })}
+                
+                <div className={'group'}>
                     <button
-                        disabled={formData.stats[i] !== 0}
-                        className={'primary' + (formData.stats[i] === 0 ? '' : ' success')}
-                        children={formData.stats[i] === 0 ? 'Roll' : formData.stats[i]}
+                        className={'secondary'}
+                        children={'Back'}
+                        onClick={() => setSection(0)}
+                    />
+                    <button
+                        className={'primary'}
+                        children={'Crear'}
                         onClick={() => {
-                            if ( !rolling ) {
-                                rollAbility(i)
+                            if ( validSend() ) {
+                                let player_data = JSON.parse(JSON.stringify(formData))
+                                for ( let i = 0; i < abilities.length; i++ ) {
+                                    player_data['stat_' + abilities[i].shortname.toLowerCase()] = player_data.stats[i]
+                                }
+                                delete player_data.stats
+                                eventCallback({ event_name : 'create-player', event_data : player_data })
                             }
                         }}
                     />
                 </div>
-            })}
-            
-            <div className={'group'}>
-                <button
-                    className={'secondary'}
-                    children={'Back'}
-                    onClick={() => setSection(0)}
-                />
-                <button
-                    className={'primary'}
-                    children={'Crear'}
-                    onClick={() => {
-                        if ( validSend() ) {
-                            let player_data = JSON.parse(JSON.stringify(formData))
-                            for ( let i = 0; i < abilities.length; i++ ) {
-                                player_data['stat_' + abilities[i].shortname.toLowerCase()] = player_data.stats[i]
-                            }
-                            delete player_data.stats
-                            eventCallback({ event_name : 'create-player', event_data : player_data })
-                        }
-                    }}
-                />
             </div>
-        </div>
-    </form>
+        </form>
+    </div>
 }

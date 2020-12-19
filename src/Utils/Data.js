@@ -1,31 +1,71 @@
+import React from "react";
+import { AlignmentInfo } from "../Components/AlignmentInfo";
+import { ClassInfo } from "../Components/ClassInfo";
+import { RaceInfo } from "../Components/RaceInfo";
+import { CreatePlayer } from "../Components/CreatePlayer";
+import { EnterForm } from "../Components/EnterForm";
+import { Loading } from "../Components/Loading";
+
 export const app_states = [
     {
         app_name : 'hidden',
-        app_value : 0
+        app_value : 0,
+        component : () => {
+            return <></>
+        }
     },
     {
         app_name : 'loading',
-        app_value : 1
+        app_value : 1,
+        component : () => {
+            return <Loading
+            />
+        }
     },
     {
         app_name : 'enter',
-        app_value : 2
+        app_value : 2,
+        component : (props) => {
+            return <EnterForm
+                {...props}
+            />
+        }
     },
     {
         app_name : 'new-player',
-        app_value : 3
+        app_value : 3,
+        component : (props) => {
+            return <CreatePlayer
+                {...props}
+            />
+        }
     },
     {
         app_name : 'race-info',
-        app_value : 4
+        app_value : 4,
+        component : (props) => {
+            return <RaceInfo
+                {...props}
+            />
+        }
     },
     {
         app_name : 'class-info',
-        app_value : 5
+        app_value : 5,
+        component : (props) => {
+            return <ClassInfo
+                {...props}
+            />
+        }
     },
     {
         app_name : 'alignment-info',
-        app_value : 6
+        app_value : 6,
+        component : (props) => {
+            return <AlignmentInfo
+                {...props}
+            />
+        }
     },
 ]
 

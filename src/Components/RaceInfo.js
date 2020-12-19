@@ -4,7 +4,7 @@ import { Gem } from "./Gem";
 
 export function RaceInfo( { app_data } ) {
     const { name, ability_bonus, skill_bonus, age, height, trait_name } = races[app_data.item_id]
-    return <Fragment>
+    return <div className={'race-info'}>
         <h1>{name}</h1>
         
         <div className={'trait-section'}>
@@ -54,5 +54,5 @@ export function RaceInfo( { app_data } ) {
             text={'Race'}
             type={2}
         />
-    </Fragment>
+    </div>
 }

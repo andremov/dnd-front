@@ -1,17 +1,42 @@
 @import "variables";
 
-.App {
+.main-panel {
+  height: calc(100vh - 70px);
+  flex: 1;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow-x: hidden;
+}
+
+.card-holder {
+  flex: 2;
+  height: calc(100vh - 70px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.app-card {
   background-color: white;
   border-radius: 10px;
   box-shadow: 0 5px 5px 2px #00000077;
-  padding: 10px;
   box-sizing: border-box;
   transition: 0.25s;
   overflow: hidden;
   margin: 10px;
 }
 
-.App.hidden {
+.app-card-contents {
+  padding: 10px;
+  background: radial-gradient(circle at 0% 100%, #a7a7a7 0%, #ffffff 30%);
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.hidden {
   box-shadow: none;
   width: 0;
   height: 0;
@@ -19,12 +44,12 @@
   margin: 0;
 }
 
-.App.enter {
+.enter {
   width: 400px;
   height: 300px;
 }
 
-.App.loading {
+.loading {
   width: 100px;
   height: 100px;
   display: flex;
@@ -32,10 +57,9 @@
   justify-content: center;
 }
 
-.App.new-player {
+.new-player {
   width: 500px;
   height: 700px;
-
 
   .ability-entry {
     width: 100%;
@@ -47,15 +71,12 @@
       font-size: 1.4em;
     }
   }
-
 }
 
-.App.race-info {
-  background: radial-gradient(circle at 0% 100%, #a7a7a7 0%, #ffffff 30%);
+.race-info {
+  @extend .app-card-contents;
   width: 250px;
   height: 400px;
-  display: flex;
-  flex-wrap: wrap;
 
   > * {
     width: 100%;
@@ -93,12 +114,10 @@
   }
 }
 
-.App.class-info {
-  background: radial-gradient(circle at 0% 100%, #a7a7a7 0%, #ffffff 30%);
+.class-info {
+  @extend .app-card-contents;
   width: 300px;
   height: 350px;
-  display: flex;
-  flex-wrap: wrap;
 
   > * {
     width: 100%;
@@ -132,12 +151,10 @@
   }
 }
 
-.App.alignment-info {
-  background: radial-gradient(circle at 0% 100%, #a7a7a7 0%, #ffffff 30%);
+.alignment-info {
+  @extend .app-card-contents;
   width: 300px;
   height: 350px;
-  display: flex;
-  flex-wrap: wrap;
 
   > * {
     width: 100%;

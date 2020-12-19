@@ -4,7 +4,7 @@ import { Gem } from "./Gem";
 
 export function ClassInfo( { app_data } ) {
     const { name, hit_dice, armor, weapons } = classes[app_data.item_id]
-    return <Fragment>
+    return <div className={'class-info'}>
         <h1>{name}</h1>
         
         <div className={'info-section'}>
@@ -50,5 +50,5 @@ export function ClassInfo( { app_data } ) {
             text={'Class'}
             type={2}
         />
-    </Fragment>
+    </div>
 }

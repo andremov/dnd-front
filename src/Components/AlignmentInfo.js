@@ -4,7 +4,7 @@ import { Gem } from "./Gem";
 
 export function AlignmentInfo( { app_data } ) {
     const { name, description } = alignments[app_data.item_id]
-    return <Fragment>
+    return <div className={'alignment-info'}>
         <h1>{name}</h1>
         
         <div className={'info-section'}>
@@ -16,5 +16,5 @@ export function AlignmentInfo( { app_data } ) {
             text={'Alignment'}
             type={2}
         />
-    </Fragment>
+    </div>
 }

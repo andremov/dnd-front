@@ -132,54 +132,35 @@ export class App extends Component {
         return (
             <Fragment>
                 <Header callback={this.handleEvent} />
-                {w_val.map(( item, i ) => {
-                    
-                    return <div className={'App ' + item.app_name} key={i}>
-                        <ExitButton
-                            canExit={i > 0 && item.app_value > 1}
-                            exitCallback={() => this.handleEvent({ event_name : 'close', event_window : i })}
-                        />
-                        <ParseContent
-                            values={item}
-                            app_data={window_data[i]}
-                            player_data={player_data}
-                            eventCallback={this.handleEvent}
-                        />
-                    </div>
-                    
-                })}
+                <Panel type={''}>
+                    {app_states[main_value].component({
+                        values : app_states[main_value],
+                        app_data : main_data,
+                        player_data : player_data,
+                        eventCallback : this.handleEvent,
+                    })}
+                </Panel>
+                <div className={'card-holder'}>
+                    {w_val.map(( item, i ) => {
+                        
+                        return <div className={'app-card'} key={i}>
+                            <ExitButton
+                                canExit={item.app_value > 1}
+                                exitCallback={() => this.handleEvent({ event_name : 'close', event_window : i })}
+                            />
+                            {
+                                item.component({
+                                    values : item,
+                                    app_data : window_data[i],
+                                    player_data : player_data,
+                                    eventCallback : this.handleEvent,
+                                })
+                            }
+                        </div>
+                        
+                    })}
+                </div>
             </Fragment>
         );
-    }
-}
-
-function ParseContent( props ) {
-    switch ( props.values.app_value ) {
-        case 1:
-            return <Loading
-            
-            />
-        case 2:
-            return <EnterForm
-                {...props}
-            />
-        case 3:
-            return <CreatePlayer
-                {...props}
-            />
-        case 4:
-            return <RaceInfo
-                {...props}
-            />
-        case 5:
-            return <ClassInfo
-                {...props}
-            />
-        case 6:
-            return <AlignmentInfo
-                {...props}
-            />
-        default:
-            return <></>
     }
 }
