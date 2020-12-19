@@ -21,6 +21,10 @@
   width: 100%;
   margin: 5px;
 
+  &.shadow {
+    filter: drop-shadow(0px 6px 2px #00000050);
+  }
+
   &.blend {
     opacity: 0.5;
   }
