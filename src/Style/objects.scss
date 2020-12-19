@@ -34,6 +34,7 @@
 
       > .back-drop {
         padding: 5px 10px 5px 40px;
+        background: linear-gradient(270deg, #00000020 60%, #00000060 100%);
       }
     }
   }
@@ -45,6 +46,7 @@
 
       > .back-drop {
         padding: 5px 40px 5px 10px;
+        background: linear-gradient(90deg, #00000020 60%, #00000060 100%);
       }
     }
   }
@@ -58,7 +60,7 @@
     > .back-drop {
       width: inherit;
       height: inherit;
-      background-color: #00000050;
+      //background-color: #00000050;
     }
   }
 
