@@ -23,24 +23,27 @@ export function CreatePlayer( { eventCallback } ) {
     ])
     const [ rolling, setRolling ] = useState(false)
     
-    function handleChange( e ) {
-        if ( e.target.name === 'race' || e.target.name === 'char_class' ) {
-            if ( e.target.value === '-1' ) {
-                eventCallback({ event_name : 'close' })
-            } else {
-                eventCallback({
-                    event_name : e.target.name + '-info',
-                    event_window : 50,
-                    event_data : {
-                        [e.target.name] : e.target.value
-                    }
-                })
-            }
-        }
+    function wrapFormData( data ) {
         setFormData({
             ...formData,
-            [e.target.name] : e.target.value
+            ...data
         })
+    }
+    
+    function handleChange( e ) {
+        
+        // handle right age and height
+        let d = {
+            [e.target.name] : e.target.value
+        }
+        
+        if ( e.target.name === 'race' && e.target.value !== '-1' ) {
+            let r = e.target.value
+            d.age = Math.min(Math.max(formData.age, races[r].age.min), races[r].age.max)
+            d.height = Math.min(Math.max(formData.height, races[r].height.min), races[r].height.max)
+        }
+        
+        wrapFormData(d)
     }
     
     function rollAbility( ability, index = 0, missing_rolls = 20 ) {
@@ -213,6 +216,7 @@ export function CreatePlayer( { eventCallback } ) {
             <button
                 className={'primary'}
                 children={'Next'}
+                disabled={!validSection()}
                 onClick={() => {
                     if ( validSection() ) {
                         setSection(1)
@@ -264,7 +268,12 @@ export function CreatePlayer( { eventCallback } ) {
                     children={'Crear'}
                     onClick={() => {
                         if ( validSend() ) {
-                            eventCallback({ event_name : 'create-player', event_data : formData })
+                            let player_data = JSON.parse(JSON.stringify(formData))
+                            for ( let i = 0; i < abilities.length; i++ ) {
+                                player_data['stat_' + abilities[i].shortname.toLowerCase()] = player_data.stats[i]
+                            }
+                            delete player_data.stats
+                            eventCallback({ event_name : 'create-player', event_data : player_data })
                         }
                     }}
                 />
