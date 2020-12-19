@@ -1,0 +1,155 @@
+@import "variables";
+
+.App {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 5px 5px 2px #00000077;
+  padding: 10px;
+  box-sizing: border-box;
+  transition: 0.25s;
+  overflow: hidden;
+  margin: 10px;
+}
+
+.App.hidden {
+  box-shadow: none;
+  width: 0;
+  height: 0;
+  padding: 0;
+  margin: 0;
+}
+
+.App.enter {
+  width: 400px;
+  height: 300px;
+}
+
+.App.loading {
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.App.new-player {
+  width: 500px;
+  height: 700px;
+
+
+  .ability-entry {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    > span {
+      font-size: 1.4em;
+    }
+  }
+
+}
+
+.App.race-info {
+  background: radial-gradient(circle at 0% 100%, #a7a7a7 0%, #ffffff 30%);
+  width: 250px;
+  height: 400px;
+  display: flex;
+  flex-wrap: wrap;
+
+  > * {
+    width: 100%;
+  }
+
+  > h1 {
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+
+  > .trait-section {
+    border-top: 1px solid gray;
+    border-bottom: 1px solid gray;
+    display: flex;
+    flex-direction: column;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+    > h2 {
+      text-align: center;
+      font-weight: normal;
+    }
+  }
+
+  > .info-section {
+    display: flex;
+    flex-direction: column;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  > .gem-socket {
+    align-self: flex-end;
+  }
+}
+
+.App.class-info {
+  background: radial-gradient(circle at 0% 100%, #a7a7a7 0%, #ffffff 30%);
+  width: 300px;
+  height: 350px;
+  display: flex;
+  flex-wrap: wrap;
+
+  > * {
+    width: 100%;
+  }
+
+  > h1 {
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+
+  > .info-section {
+    border-top: 1px solid gray;
+    border-bottom: 1px solid gray;
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+
+  > .equip-section {
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+
+  > .gem-socket {
+    align-self: flex-end;
+  }
+
+  .invalid {
+    color: $failure-color;
+    text-decoration: line-through;
+  }
+}
+
+.App.alignment-info {
+  background: radial-gradient(circle at 0% 100%, #a7a7a7 0%, #ffffff 30%);
+  width: 300px;
+  height: 350px;
+  display: flex;
+  flex-wrap: wrap;
+
+  > * {
+    width: 100%;
+  }
+
+  > h1 {
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+
+  > .gem-socket {
+    align-self: flex-end;
+  }
+}
