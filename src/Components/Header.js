@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment, useState } from 'react';
 import { alignments, classes, races } from "../Utils/Data";
 
 const items = [
@@ -21,34 +21,42 @@ const items = [
 ]
 
 export function Header( { callback } ) {
+    
     return (
         <header>
             {items.map(( item, i ) => {
-                return <div className={'header-item'} key={i}>
-                    <div className={'item-name'}>
-                        {item.name}
-                    </div>
-                    <div className={'sub-item-list'}>
-                        {
-                            item.list.map(( item2, i2 ) => {
-                                return <div
-                                    className={'sub-item'}
-                                    key={i2}
-                                    onClick={
-                                        () => callback({
-                                            event_name : item.window_type,
-                                            event_data : { item_id : item2.id }
-                                        })
-                                    }
-                                >
-                                    {item2.name}
-                                </div>
-                            })
-                        }
-                    </div>
-                </div>
+                return <HeaderItem data={item} key={i} callback={callback} />
             })}
         </header>
     );
+}
+
+function HeaderItem( { data, callback } ) {
+    const [ opened, setOpened ] = useState(false)
+    
+    return <div className={'header-item'}>
+        
+        <div className={'item-name' + (opened ? ' open' : '')} onClick={() => setOpened(!opened)}>
+            {data.name}
+        </div>
+        
+        <ul className={'dropdown-list' + (opened ? ' open' : '')}> {
+            data.list.map(( item, i ) => {
+                return <li
+                    className={'dropdown-item'}
+                    key={i}
+                    onClick={
+                        () => callback({
+                            event_name : data.window_type,
+                            event_data : { item_id : item.id }
+                        })
+                    }
+                >
+                    {item.name}
+                </li>
+            })
+        }
+        </ul>
+    </div>
 }
 
