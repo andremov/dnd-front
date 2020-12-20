@@ -5,66 +5,109 @@ import { RaceInfo } from "../Components/RaceInfo";
 import { CreatePlayer } from "../Components/CreatePlayer";
 import { EnterForm } from "../Components/EnterForm";
 import { Loading } from "../Components/Loading";
+import { ExitButton } from "../Components/ExitButton";
+import { AppCard } from "../Components/AppCard";
 
-export const app_states = [
-    {
-        app_name : 'hidden',
-        app_value : 0,
-        component : () => {
-            return <></>
-        }
+export const cards = {
+    hidden : {
+        component :
+            ( props ) => {
+                return <AppCard
+                    {...props}
+                    showExitBtn={false}
+                    className={'dims_hidden'}
+                >
+                </AppCard>
+            }
     },
-    {
-        app_name : 'loading',
-        app_value : 1,
-        component : () => {
-            return <Loading
-            />
-        }
-    },
-    {
-        app_name : 'enter',
-        app_value : 2,
-        component : (props) => {
-            return <EnterForm
+    loading : {
+        component : ( props ) => {
+            return <AppCard
                 {...props}
-            />
+                showExitBtn={false}
+                className={'dims_loading'}
+            >
+                <Loading />
+            </AppCard>
+        }
+    },
+    race_info : {
+        component : ( props ) => {
+            return <AppCard
+                {...props}
+                className={'dims_race_info'}
+            >
+                <RaceInfo
+                    {...props}
+                />
+            </AppCard>
+        }
+    },
+    class_info : {
+        component : ( props ) => {
+            return <AppCard
+                {...props}
+                className={'dims_class_info'}
+            >
+                <ClassInfo
+                    {...props}
+                />
+            </AppCard>
+        }
+    },
+    alignment_info : {
+        component : ( props ) => {
+            return <AppCard
+                {...props}
+                className={'dims_alignment_info'}
+            >
+                <AlignmentInfo
+                    {...props}
+                />
+            </AppCard>
+        }
+    },
+}
+
+export const panels = [
+    {
+        card_name : 'blank',
+        card_value : 0,
+        component : ( props ) => {
+            return <div className={'app-card'}>
+            
+            </div>
         }
     },
     {
-        app_name : 'new-player',
-        app_value : 3,
-        component : (props) => {
-            return <CreatePlayer
-                {...props}
-            />
+        card_name : 'loading',
+        card_value : 1,
+        component : ( props ) => {
+            return <div className={'app-card'}>
+                <Loading />
+            </div>
         }
     },
     {
-        app_name : 'race-info',
-        app_value : 4,
-        component : (props) => {
-            return <RaceInfo
-                {...props}
-            />
+        card_name : 'enter',
+        card_value : 2,
+        component : ( props ) => {
+            return <div className={'app-card'}>
+                <EnterForm
+                    {...props}
+                />
+            </div>
         }
     },
     {
-        app_name : 'class-info',
-        app_value : 5,
-        component : (props) => {
-            return <ClassInfo
-                {...props}
-            />
-        }
-    },
-    {
-        app_name : 'alignment-info',
-        app_value : 6,
-        component : (props) => {
-            return <AlignmentInfo
-                {...props}
-            />
+        card_name : 'new-player',
+        card_value : 3,
+        component : ( props ) => {
+            return <div className={'app-card'}>
+                <CreatePlayer
+                    {...props}
+                />
+            </div>
         }
     },
 ]

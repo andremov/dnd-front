@@ -1,21 +1,21 @@
-import React, { Fragment, useState } from 'react';
+import React, { useState } from 'react';
 import { alignments, classes, races } from "../Utils/Data";
 
 const items = [
     {
         name : 'Races',
         list : races,
-        window_type : 'race-info'
+        window_type : 'race_info'
     },
     {
         name : 'Classes',
         list : classes,
-        window_type : 'class-info'
+        window_type : 'class_info'
     },
     {
         name : 'Alignments',
         list : alignments,
-        window_type : 'alignment-info'
+        window_type : 'alignment_info'
     }
 
 ]
@@ -47,8 +47,12 @@ function HeaderItem( { data, callback } ) {
                     key={i}
                     onClick={
                         () => callback({
-                            event_name : data.window_type,
-                            event_data : { item_id : item.id }
+                            action : 'add',
+                            data : {
+                                card_name : 'loading',
+                                card_destination : data.window_type,
+                                item_id : item.id
+                            }
                         })
                     }
                 >

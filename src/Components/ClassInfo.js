@@ -1,10 +1,10 @@
-import React, { Fragment } from "react";
+import React  from "react";
 import { classes } from "../Utils/Data";
 import { Gem } from "./Gem";
 
-export function ClassInfo( { app_data } ) {
-    const { name, hit_dice, armor, weapons } = classes[app_data.item_id]
-    return <div className={'class-info'}>
+export function ClassInfo( { card_data } ) {
+    const { name, hit_dice, armor, weapons } = classes[card_data.item_id]
+    return <div className={'class_info'}>
         <h1>{name}</h1>
         
         <div className={'info-section'}>

@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React  from 'react';
 import { ReactComponent as Gem0 } from '../Assets/gem0.svg'
 import { ReactComponent as Gem1 } from '../Assets/gem1.svg'
 import { ReactComponent as Gem2 } from '../Assets/gem2.svg'
