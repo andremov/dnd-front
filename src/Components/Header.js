@@ -46,14 +46,17 @@ function HeaderItem( { data, callback } ) {
                     className={'dropdown-item'}
                     key={i}
                     onClick={
-                        () => callback({
-                            action : 'add',
-                            data : {
-                                card_name : 'loading',
-                                card_destination : data.window_type,
-                                item_id : item.id
-                            }
-                        })
+                        () => {
+                            setOpened(false)
+                            callback({
+                                action : 'add',
+                                data : {
+                                    card_name : 'loading',
+                                    card_destination : data.window_type,
+                                    item_id : item.id
+                                }
+                            })
+                        }
                     }
                 >
                     {item.name}
