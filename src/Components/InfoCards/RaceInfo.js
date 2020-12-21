@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
-import { abilities, races, skills } from "../Utils/Data";
-import { Gem } from "./Gem";
+import { abilities, races, skills } from "../../Utils/Data";
+import { Gem } from "../Gem";
 
 export function RaceInfo( { card_data } ) {
     const { name, ability_bonus, skill_bonus, age, height, trait_name } = races[card_data.item_id]

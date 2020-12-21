@@ -120,11 +120,7 @@ export class App extends Component {
     }
     
     modifyPanel = ( data ) => {
-        let { panel_data } = this.state;
-        
-        panel_data = data;
-        
-        this.setState({ panel_data })
+        this.setState({ panel_data : data })
     }
     
     changePanelDestination = ( data ) => {

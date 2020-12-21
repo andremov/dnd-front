@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
-import { AlignmentInfo } from "../Components/AlignmentInfo";
-import { ClassInfo } from "../Components/ClassInfo";
-import { RaceInfo } from "../Components/RaceInfo";
+import { AlignmentInfo } from "../Components/InfoCards/AlignmentInfo";
+import { ClassInfo } from "../Components/InfoCards/ClassInfo";
+import { RaceInfo } from "../Components/InfoCards/RaceInfo";
 import { CreatePlayer } from "../Components/CreatePlayer";
 import { EnterForm } from "../Components/EnterForm";
 import { Loading } from "../Components/Loading";

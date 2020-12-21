@@ -1,6 +1,6 @@
 import React  from 'react';
-import { alignments } from "../Utils/Data";
-import { Gem } from "./Gem";
+import { alignments } from "../../Utils/Data";
+import { Gem } from "../Gem";
 
 export function AlignmentInfo( { card_data } ) {
     const { name, description } = alignments[card_data.item_id]

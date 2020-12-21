@@ -1,6 +1,6 @@
 import React  from "react";
-import { classes } from "../Utils/Data";
-import { Gem } from "./Gem";
+import { classes } from "../../Utils/Data";
+import { Gem } from "../Gem";
 
 export function ClassInfo( { card_data } ) {
     const { name, hit_dice, armor, weapons } = classes[card_data.item_id]
