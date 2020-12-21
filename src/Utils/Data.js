@@ -7,6 +7,7 @@ import { EnterForm } from "../Components/EnterForm";
 import { Loading } from "../Components/Loading";
 import { ExitButton } from "../Components/ExitButton";
 import { AppCard } from "../Components/AppCard";
+import { AbilityInfo } from "../Components/InfoCards/AbilityInfo";
 
 export const card_states = {
     hidden : {
@@ -83,6 +84,21 @@ export const card_states = {
             </AppCard>
         }
     },
+    ability_info : {
+        component : ( props ) => {
+            return <AbilityInfo
+                {...props}
+            />
+        },
+        card : ( props ) => {
+            return <AppCard
+                {...props}
+                className={'dims_ability_info'}
+            >
+                {card_states['ability_info'].component(props)}
+            </AppCard>
+        }
+    },
 }
 
 export const panel_states = {
@@ -150,37 +166,43 @@ export const abilities = [
         name : 'Strength',
         id : 0,
         shortname : 'STR',
-        skills : [ 0 ]
+        skills : [ 0 ],
+        description : 'Strength measures bodily power, athletic Training, and the extent to which you can exert raw physical force.'
     },
     {
         name : 'Dexterity',
         id : 1,
         shortname : 'DEX',
-        skills : [ 1, 2, 3 ]
+        skills : [ 1, 2, 3 ],
+        description : 'Dexterity measures agility, reflexes, and balance.\n'
     },
     {
         name : 'Constitution',
         id : 2,
         shortname : 'CON',
-        skills : [ 18, 19, 20 ]
+        skills : [ 18, 19, 20 ],
+        description : 'Constitution measures health, stamina, and vital force.\n'
     },
     {
         name : 'Intelligence',
         id : 3,
         shortname : 'INT',
-        skills : [ 4, 5, 6, 7, 8 ]
+        skills : [ 4, 5, 6, 7, 8 ],
+        description : 'Intelligence measures mental acuity, accuracy of recall, and the ability to reason.\n'
     },
     {
         name : 'Wisdom',
         id : 4,
         shortname : 'WIS',
-        skills : [ 9, 10, 11, 12, 13 ]
+        skills : [ 9, 10, 11, 12, 13 ],
+        description : 'Wisdom reflects how attuned you are to the world around you and represents perceptiveness and intuition.\n'
     },
     {
         name : 'Charisma',
         id : 5,
         shortname : 'CHA',
-        skills : [ 14, 15, 16, 17 ]
+        skills : [ 14, 15, 16, 17 ],
+        description : 'Charisma measures your ability to interact effectively with others. It includes such factors as confidence and eloquence, and it can represent a charming or commanding Personality.\n'
     },
 ]
 

@@ -225,3 +225,29 @@
     justify-content: center;
   }
 }
+
+.dims_ability_info {
+  width: 300px;
+  height: 250px;
+  min-width: 300px;
+  min-height: 250px;
+}
+
+.ability_info {
+  @extend .app-card-contents;
+  @extend .dims_ability_info;
+
+  > * {
+    width: 100%;
+  }
+
+  > h1 {
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+
+  > .gem-socket {
+    align-self: flex-end;
+  }
+}

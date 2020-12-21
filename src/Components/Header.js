@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { alignments, classes, races } from "../Utils/Data";
+import { abilities, alignments, classes, races } from "../Utils/Data";
 
 const items = [
     {
@@ -13,15 +13,18 @@ const items = [
         window_type : 'class_info'
     },
     {
+        name : 'Abilities',
+        list : abilities,
+        window_type : 'ability_info'
+    },
+    {
         name : 'Alignments',
         list : alignments,
         window_type : 'alignment_info'
-    }
-
+    },
 ]
 
 export function Header( { callback } ) {
-    
     return (
         <header>
             {items.map(( item, i ) => {
