@@ -15,7 +15,10 @@ export function EnterForm( { eventCallback } ) {
             <button
                 className={'secondary small'}
                 children={'Create'}
-                onClick={() => eventCallback({ event_window: -1, event_name : 'new-player' })}
+                onClick={() => {
+                    eventCallback({ action : 'modify', data : { name : 'loading', destination : 'new_player' } })
+                    setTimeout(() => eventCallback({ action : 'go_to_destination' }), 1000)
+                }}
             />
         </form>
     </div>

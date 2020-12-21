@@ -106,7 +106,7 @@ export function CreatePlayer( { eventCallback } ) {
                     onChange={handleChange}
                 />
                 
-                <div className={'group'}>
+                <div className={'input-group'}>
                     <input
                         placeholder={'Name'}
                         name={'name'}
@@ -121,7 +121,7 @@ export function CreatePlayer( { eventCallback } ) {
                     />
                 </div>
                 
-                <div className={'group'}>
+                <div className={'input-group'}>
                     <select
                         name={'race'}
                         value={formData.race}
@@ -168,7 +168,7 @@ export function CreatePlayer( { eventCallback } ) {
                     }
                 </select>
                 
-                <div style={{ display : 'flex', flexDirection : 'column', alignItems : 'center' }}>
+                <div className={'range-input'} >
                     <div>
                         Height:
                         <input
@@ -191,7 +191,7 @@ export function CreatePlayer( { eventCallback } ) {
                     />
                 </div>
                 
-                <div style={{ display : 'flex', flexDirection : 'column', alignItems : 'center' }}>
+                <div className={'range-input'} >
                     <div>
                         Age:
                         <input
@@ -258,7 +258,7 @@ export function CreatePlayer( { eventCallback } ) {
                     </div>
                 })}
                 
-                <div className={'group'}>
+                <div className={'input-group'}>
                     <button
                         className={'secondary'}
                         children={'Back'}

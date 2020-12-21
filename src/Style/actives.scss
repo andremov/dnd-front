@@ -50,21 +50,20 @@ button {
 }
 
 input, select {
-  height: 50px;
-  min-width: 220px;
+  height: 45px;
+  min-width: 200px;
+  width: 100%;
   padding: 5px 5px 5px 10px;
   box-sizing: border-box;
   border-radius: 10px;
   outline: 0;
   border: 1.5px solid transparent;
   background-color: #ddd;
-  transform: scale(0.95);
   transition: 0.2s;
   font-size: 1.05em;
-  margin: 5px;
+  margin: 2px;
 
   &:focus {
-    transform: scale(1);
     border-color: $main-color;
   }
 
@@ -93,6 +92,7 @@ form {
   > .color-bar {
     height: 10px;
     width: 150%;
+    margin-top: 10px;
     background: linear-gradient(30deg, $main-color, $main-color-dark);
   }
 
@@ -109,17 +109,30 @@ form {
     &.hidden {
       height: 0;
     }
-
-    > .group {
-      display: flex;
-      align-items: center;
-      justify-content: space-evenly;
-    }
   }
+}
 
-  > .group {
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
+.range-input {
+  display: flex;
+  flex-direction: column;
+  align-items: center
+}
+
+.input-group {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin: 2px;
+
+  > input, > select {
+    margin: 0;
+
+    &:nth-child(1) {
+      margin-right: 2px;
+    }
+
+    &:nth-child(2) {
+      margin-left: 2px;
+    }
   }
 }

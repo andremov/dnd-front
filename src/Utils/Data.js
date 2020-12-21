@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { AlignmentInfo } from "../Components/AlignmentInfo";
 import { ClassInfo } from "../Components/ClassInfo";
 import { RaceInfo } from "../Components/RaceInfo";
@@ -8,109 +8,109 @@ import { Loading } from "../Components/Loading";
 import { ExitButton } from "../Components/ExitButton";
 import { AppCard } from "../Components/AppCard";
 
-export const cards = {
+export const card_states = {
     hidden : {
-        component :
+        component : ( props ) => {
+            return <Fragment />
+        },
+        card :
             ( props ) => {
                 return <AppCard
                     {...props}
                     showExitBtn={false}
                     className={'dims_hidden'}
                 >
+                    {card_states['hidden'].component(props)}
                 </AppCard>
             }
     },
     loading : {
         component : ( props ) => {
+            return <Loading />
+        },
+        card : ( props ) => {
             return <AppCard
                 {...props}
                 showExitBtn={false}
                 className={'dims_loading'}
             >
-                <Loading />
+                {card_states['loading'].component(props)}
             </AppCard>
         }
     },
     race_info : {
         component : ( props ) => {
+            return <RaceInfo
+                {...props}
+            />
+        },
+        card : ( props ) => {
             return <AppCard
                 {...props}
                 className={'dims_race_info'}
             >
-                <RaceInfo
-                    {...props}
-                />
+                {card_states['race_info'].component(props)}
             </AppCard>
         }
     },
     class_info : {
         component : ( props ) => {
+            return <ClassInfo
+                {...props}
+            />
+        },
+        card : ( props ) => {
             return <AppCard
                 {...props}
                 className={'dims_class_info'}
             >
-                <ClassInfo
-                    {...props}
-                />
+                {card_states['class_info'].component(props)}
             </AppCard>
         }
     },
     alignment_info : {
         component : ( props ) => {
+            return <AlignmentInfo
+                {...props}
+            />
+        },
+        card : ( props ) => {
             return <AppCard
                 {...props}
                 className={'dims_alignment_info'}
             >
-                <AlignmentInfo
-                    {...props}
-                />
+                {card_states['alignment_info'].component(props)}
             </AppCard>
         }
     },
 }
 
-export const panels = [
-    {
-        card_name : 'blank',
-        card_value : 0,
+export const panel_states = {
+    hidden : {
         component : ( props ) => {
-            return <div className={'app-card'}>
-            
-            </div>
-        }
+            return <Fragment />
+        },
     },
-    {
-        card_name : 'loading',
-        card_value : 1,
+    loading : {
         component : ( props ) => {
-            return <div className={'app-card'}>
-                <Loading />
-            </div>
-        }
+            return <Loading />
+        },
     },
-    {
-        card_name : 'enter',
-        card_value : 2,
+    enter : {
         component : ( props ) => {
-            return <div className={'app-card'}>
-                <EnterForm
-                    {...props}
-                />
-            </div>
-        }
+            return <EnterForm
+                {...props}
+            />
+        },
     },
-    {
-        card_name : 'new-player',
-        card_value : 3,
+    new_player : {
         component : ( props ) => {
-            return <div className={'app-card'}>
-                <CreatePlayer
-                    {...props}
-                />
-            </div>
-        }
+            return <CreatePlayer
+                {...props}
+            />
+        },
     },
-]
+}
 
 export const skills = [
     // 0

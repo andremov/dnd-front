@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { cards } from "./Utils/Data";
+import { card_states, panel_states } from "./Utils/Data";
 import { Header } from "./Components/Header";
 import { Panel } from "./Components/Panel";
 
@@ -8,17 +8,18 @@ export class App extends Component {
     state = {
         player_data : undefined,
         
-        panel_data : {},
+        panel_data : {
+            name : 'loading',
+            destination : 'enter'
+        },
         
         cards_data : [],
-        
-        // main_value : 2,
-        // main_destination : 0,
-        // main_data : undefined,
-        //
-        // window_values : [],
-        // window_destinations : [],
-        // window_data : [],
+    }
+    
+    componentDidMount() {
+        setTimeout(() => {
+            this.handlePanel({ action : 'go_to_destination' })
+        }, 1000)
     }
     
     handleCard = ( { action, card_id, data } ) => {
@@ -108,6 +109,41 @@ export class App extends Component {
         this.setState({ cards_data })
     }
     
+    handlePanel = ( { action, data } ) => {
+        if ( action === 'modify' ) {
+            this.modifyPanel(data)
+        } else if ( action === 'change_destination' ) {
+            this.changePanelDestination(data)
+        } else if ( action === 'go_to_destination' ) {
+            this.gotoPanelDestination()
+        }
+    }
+    
+    modifyPanel = ( data ) => {
+        let { panel_data } = this.state;
+        
+        panel_data = data;
+        
+        this.setState({ panel_data })
+    }
+    
+    changePanelDestination = ( data ) => {
+        let { panel_data } = this.state;
+        
+        panel_data.destination = data.destination;
+        
+        this.setState({ panel_data })
+    }
+    
+    gotoPanelDestination = () => {
+        let { panel_data } = this.state;
+        
+        panel_data.name = panel_data.destination;
+        panel_data.destination = 'loading';
+        
+        this.setState({ panel_data })
+    }
+    
     render() {
         const { player_data, panel_data, cards_data } = this.state;
         
@@ -116,12 +152,13 @@ export class App extends Component {
                 <Header callback={this.handleCard} />
                 
                 <Panel type={''}>
-                    {/*{app_states[main_value].component({*/}
-                    {/*    values : app_states[main_value],*/}
-                    {/*    app_data : main_data,*/}
-                    {/*    player_data : player_data,*/}
-                    {/*    eventCallback : this.handleEvent,*/}
-                    {/*})}*/}
+                    {panel_states[panel_data.name].component(
+                        {
+                            card_data : panel_data,
+                            player_data : player_data,
+                            eventCallback : this.handlePanel
+                        }
+                    )}
                 </Panel>
                 
                 <div className={'card-holder-panel'}>
@@ -129,7 +166,7 @@ export class App extends Component {
                         {cards_data.map(( item, i ) => {
                             
                             return <Fragment key={i}>
-                                {cards[item.card_name].component(
+                                {card_states[item.card_name].card(
                                     {
                                         card_data : item,
                                         card_id : i,

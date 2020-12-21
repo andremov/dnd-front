@@ -2,7 +2,7 @@
 
 .main-panel {
   height: calc(100vh - 70px);
-  width: 30%;
+  width: 35%;
   min-width: 30%;
   background-color: white;
   display: flex;
@@ -12,7 +12,7 @@
 }
 
 .card-holder-panel {
-  width: 70%;
+  width: 65%;
   height: calc(100vh - 70px);
 
   > .board {
@@ -74,8 +74,9 @@
 }
 
 .new-player {
-  width: 500px;
-  height: 700px;
+  width: 100%;
+  padding-left: 10px;
+  padding-right: 10px;
 
   .ability-entry {
     width: 100%;
