@@ -1,4 +1,5 @@
 import axios from "axios";
+import { classes } from "../Utils/Data";
 
 export const API = axios.create({
     // baseURL : 'https://andremov-dnd-api.glitch.me/',
@@ -8,7 +9,12 @@ export const API = axios.create({
 });
 
 export function sendCharacter( object ) {
-    return API.post('/players/', object).then(r => {
+    return API.post('/players/', {
+        ...object,
+        level: 1,
+        hit_points : classes[object.char_class].hit_dice,
+        max_hit_points : classes[object.char_class].hit_dice
+    }).then(r => {
         return r.data;
     })
 }

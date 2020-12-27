@@ -44,8 +44,16 @@ export function CharacterInfo( { player_data } ) {
                 <h2>Basic Info</h2>
                 <Gem
                     color={'red'}
-                    text={classes[player_data.char_class].hit_dice}
+                    text={'1d'+classes[player_data.char_class].hit_dice}
                     type={8}
+                    side={'right'}
+                    blend={false}
+                    shadow={true}
+                />
+                <Gem
+                    color={'red'}
+                    text={player_data.hit_points+'/'+player_data.max_hit_points}
+                    type={5}
                     side={'right'}
                     blend={false}
                     shadow={true}
