@@ -81,7 +81,7 @@ export class App extends Component {
     
     changeCardDestination = ( card_id, data ) => {
         let { cards_data } = this.state;
-        
+    
         cards_data[card_id].card_destination = data.card_destination;
         
         this.setState({ cards_data })
@@ -152,7 +152,12 @@ export class App extends Component {
                         {
                             card_data : panel_data,
                             player_data : player_data,
-                            eventCallback : this.handlePanel
+                            eventCallback : this.handlePanel,
+                            setPlayerData : (data) => {
+                                this.setState({
+                                    player_data : data
+                                })
+                            }
                         }
                     )}
                 </Panel>
