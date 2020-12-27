@@ -6,6 +6,8 @@ import { ReactComponent as Gem3 } from '../Assets/gem3.svg'
 import { ReactComponent as Gem4 } from '../Assets/gem4.svg'
 import { ReactComponent as Gem5 } from '../Assets/gem5.svg'
 import { ReactComponent as Gem6 } from '../Assets/gem6.svg'
+import { ReactComponent as Gem7 } from '../Assets/gem7.svg'
+import { ReactComponent as Gem8 } from '../Assets/gem8.svg'
 
 const gem_colors = {
     gray : '#777777',
@@ -51,6 +53,10 @@ function Gemstone( { type, color } ) {
             return <Gem5 style={{ fill : gem_colors[color] }} />
         case 6:
             return <Gem6 style={{ fill : gem_colors[color] }} />
+        case 7:
+            return <Gem7 style={{ fill : gem_colors[color] }} />
+        case 8:
+            return <Gem8 style={{ fill : gem_colors[color] }} />
         default:
             return <> </>
     }

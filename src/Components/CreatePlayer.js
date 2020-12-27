@@ -377,7 +377,7 @@ function AbilitySection( props ) {
             {abilities.map(( item, i ) => {
                 return <button
                     className={'secondary ability-display' + (formData.stats[i] !== 0 ? (swapStats[0] === i || swapStats[1] === i ? ' pending' : ' success') : '')}
-                    title={'Assign to ' + item.name}
+                    title={rolledStats === 6? 'Swap '+item.name : 'Assign to ' + item.name}
                     key={i}
                     onClick={() => {
                         if ( formData.stats[i] === 0 ) {

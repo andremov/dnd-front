@@ -8,6 +8,7 @@ import { Loading } from "../Components/Loading";
 import { ExitButton } from "../Components/ExitButton";
 import { AppCard } from "../Components/AppCard";
 import { AbilityInfo } from "../Components/InfoCards/AbilityInfo";
+import { CharacterInfo } from "../Components/CharacterInfo";
 
 export const card_states = {
     hidden : {
@@ -126,6 +127,13 @@ export const panel_states = {
             />
         },
     },
+    character : {
+        component : ( props ) => {
+            return <CharacterInfo
+                {...props}
+            />
+        },
+    }
 }
 
 export const skills = [

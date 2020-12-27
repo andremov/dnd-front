@@ -1,12 +1,19 @@
 import React, { useState } from "react";
 import { findCharacter } from "../Services/api";
 
-export function EnterForm( { eventCallback } ) {
-    const [ codename, setCodename ] = useState('');
+export function EnterForm( { setPlayerData, eventCallback } ) {
+    const [ codename, setCodename ] = useState('huehue');
     
     function requestPlayer() {
         findCharacter(codename).then(r => {
-            console.log(r)
+            setPlayerData(r)
+            eventCallback({ action : 'go_to_destination' })
+            setTimeout(() => {
+                eventCallback({ action : 'change_destination', data : { destination : 'character' } })
+                setTimeout(() => {
+                    eventCallback({ action : 'go_to_destination' })
+                }, 1000)
+            }, 1000)
         })
     }
     
