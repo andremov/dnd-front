@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from "react";
 import { abilities, alignments, classes, races } from "../Utils/Data";
 import { RollDie } from "../Utils/Functions";
+import { sendCharacter } from "../Services/api";
 
 export class CreatePlayer extends Component {
     
@@ -26,6 +27,8 @@ export class CreatePlayer extends Component {
             rolling : false,
             total : 0
         },
+        rolledStats : 0,
+        swapStats : [ -1, -1 ]
     }
     
     wrapFormData = ( data ) => {
@@ -92,7 +95,7 @@ export class CreatePlayer extends Component {
     
     validSection = () => {
         let { formData } = this.state;
-        return true
+        
         return (
             !!formData.name &&
             !!formData.codename &&
@@ -120,7 +123,17 @@ export class CreatePlayer extends Component {
     }
     
     doSend = () => {
-        console.log(this.state)
+        sendCharacter(this.state.formData).then(r => {
+            console.log(r.message)
+        })
+        
+        this.props.eventCallback({ action : 'go_to_destination' })
+        setTimeout(() => {
+            this.props.eventCallback({ action : 'change_destination', data : { destination : 'enter' }  })
+            setTimeout(() => {
+                this.props.eventCallback({ action : 'go_to_destination'  })
+            }, 1000)
+        }, 1000)
     }
     
     assignRoll = ( id ) => {
@@ -165,207 +178,238 @@ export class CreatePlayer extends Component {
     }
     
     render = () => {
-        let { formData, section, rollData } = this.state;
+        let { formData, section, rollData, swapStats, rolledStats } = this.state;
         
         return <div className={'new-player'}>
             <form className={'enter-form'} onSubmit={e => {
                 e.preventDefault()
             }}>
-                <div className={'section' + (section === 0 ? '' : ' hidden')}>
-                    <input
-                        placeholder={'Codename'}
-                        name={'codename'}
-                        value={formData.codename}
-                        onChange={this.handleChange}
-                    />
-                    
-                    <div className={'input-group'}>
-                        <input
-                            placeholder={'Name'}
-                            name={'name'}
-                            value={formData.name}
-                            onChange={this.handleChange}
-                        />
-                        <input
-                            placeholder={'Family Name'}
-                            name={'family'}
-                            value={formData.family}
-                            onChange={this.handleChange}
-                        />
-                    </div>
-                    
-                    <div className={'input-group'}>
-                        <select
-                            name={'race'}
-                            value={formData.race}
-                            onChange={this.handleChange}
-                        >
-                            <option value={-1}>Race</option>
-                            {
-                                races.map(( item, i ) => {
-                                    return <option key={i} value={i}>
-                                        {item.name}
-                                    </option>
-                                })
-                            }
-                        </select>
-                        
-                        <select
-                            name={'char_class'}
-                            value={formData.char_class}
-                            onChange={this.handleChange}
-                        >
-                            <option value={-1}>Class</option>
-                            {
-                                classes.map(( item, i ) => {
-                                    return <option key={i} value={i}>
-                                        {item.name}
-                                    </option>
-                                })
-                            }
-                        </select>
-                    </div>
-                    
-                    <select
-                        name={'alignment'}
-                        value={formData.alignment}
-                        onChange={this.handleChange}
-                    >
-                        <option value={-1}>Alignment</option>
-                        {
-                            alignments.map(( item, i ) => {
-                                return <option key={i} value={i}>
-                                    {item.name}
-                                </option>
-                            })
-                        }
-                    </select>
-                    
-                    <div className={'range-input'}>
-                        <div>
-                            Height:
-                            <input
-                                className={'short'}
-                                placeholder={'0'}
-                                name={'height'}
-                                value={formData.height}
-                                onChange={this.handleChange}
-                            />
-                            cm.
-                        </div>
-                        <input
-                            type={'range'}
-                            name={'height'}
-                            disabled={formData.race === -1}
-                            min={races[formData.race]?.height.min}
-                            max={races[formData.race]?.height.max}
-                            value={formData.height}
-                            onChange={this.handleChange}
-                        />
-                    </div>
-                    
-                    <div className={'range-input'}>
-                        <div>
-                            Age:
-                            <input
-                                className={'short'}
-                                placeholder={'0'}
-                                name={'age'}
-                                value={formData.age}
-                                onChange={this.handleChange}
-                            />
-                            years
-                        </div>
-                        <input
-                            type={'range'}
-                            name={'age'}
-                            disabled={formData.race === -1}
-                            min={races[formData.race]?.age.min}
-                            max={races[formData.race]?.age.max}
-                            value={formData.age}
-                            onChange={this.handleChange}
-                        />
-                    </div>
-                    
-                    <button
-                        className={'primary'}
-                        children={'Next'}
-                        disabled={!this.validSection()}
-                        onClick={() => {
-                            if ( this.validSection() ) {
-                                this.setState({
-                                    section : 1
-                                })
-                            }
-                        }}
-                    />
-                </div>
+                <BasicSection
+                    section={section}
+                    formData={formData}
+                    handleChange={this.handleChange}
+                    validSection={this.validSection}
+                    setState={( data ) => this.setState(data)}
+                />
                 <div className={'color-bar'} />
-                <div className={'section' + (section === 1 ? '' : ' hidden')}>
-                    
-                    <h1>
-                        Abilities
-                    </h1>
-                    
-                    <div className={'ability-roll'}>
-                        <div className={'rolls-display'}>
-                            {rollData.rolls.map(( item, i ) => {
-                                return <div key={i}>
-                                    {item}
-                                </div>
-                            })}
-                        </div>
-                        
-                        <button
-                            className={'primary' + (rollData.rolled ? ' success' : '')}
-                            onClick={() => {
-                                if ( !rollData.rolling && !rollData.rolled ) {
-                                    this.rollAbility()
-                                }
-                            }}
-                        >
-                            {rollData.rolled ? rollData.total : 'Roll'}
-                        </button>
-                    </div>
-                    
-                    <div className={'ability-list'}>
-                        {abilities.map(( item, i ) => {
-                            return <button
-                                className={'secondary ability-display' + (formData.stats[i] !== 0 ? ' success' : '')}
-                                title={'Assign to ' + item.name}
-                                key={i}
-                                onClick={() => {
-                                    if (formData.stats[i] === 0) {
-                                        this.assignRoll(i)
-                                    }
-                                }}
-                            >
-                                {item.shortname+' : ' + formData.stats[i]}
-                            </button>
-                        })}
-                    </div>
-                    
-                    <div className={'input-group'}>
-                        <button
-                            className={'secondary'}
-                            children={'Back'}
-                            onClick={() =>
-                                this.setState({
-                                    section : 0
-                                })}
-                        />
-                        <button
-                            className={'primary'}
-                            children={'Crear'}
-                            onClick={() => {
-                                if ( this.validSend() ) {
-                                    this.doSend()
-                                }
-                            }}
-                        />
-                    </div>
-                </div>
+                <AbilitySection
+                    section={section}
+                    formData={formData}
+                    swapStats={swapStats}
+                    validSend={this.validSend}
+                    rolledStats={rolledStats}
+                    rollData={rollData}
+                    rollAbility={this.rollAbility}
+                    assignRoll={this.assignRoll}
+                    trySwap={this.trySwap}
+                    doSend={this.doSend}
+                    setState={( data ) => this.setState(data)}
+                />
             </form>
         </div>
     }
+}
+
+function BasicSection( props ) {
+    const { section, formData, handleChange, validSection, setState } = props;
+    
+    return <div className={'section' + (section === 0 ? '' : ' hidden')}>
+        <input
+            placeholder={'Codename'}
+            name={'codename'}
+            value={formData.codename}
+            onChange={handleChange}
+        />
+        
+        <div className={'input-group'}>
+            <input
+                placeholder={'Name'}
+                name={'name'}
+                value={formData.name}
+                onChange={handleChange}
+            />
+            <input
+                placeholder={'Family Name'}
+                name={'family'}
+                value={formData.family}
+                onChange={handleChange}
+            />
+        </div>
+        
+        <div className={'input-group'}>
+            <select
+                name={'race'}
+                value={formData.race}
+                onChange={handleChange}
+            >
+                <option value={-1}>Race</option>
+                {
+                    races.map(( item, i ) => {
+                        return <option key={i} value={i}>
+                            {item.name}
+                        </option>
+                    })
+                }
+            </select>
+            
+            <select
+                name={'char_class'}
+                value={formData.char_class}
+                onChange={handleChange}
+            >
+                <option value={-1}>Class</option>
+                {
+                    classes.map(( item, i ) => {
+                        return <option key={i} value={i}>
+                            {item.name}
+                        </option>
+                    })
+                }
+            </select>
+        </div>
+        
+        <select
+            name={'alignment'}
+            value={formData.alignment}
+            onChange={handleChange}
+        >
+            <option value={-1}>Alignment</option>
+            {
+                alignments.map(( item, i ) => {
+                    return <option key={i} value={i}>
+                        {item.name}
+                    </option>
+                })
+            }
+        </select>
+        
+        <div className={'range-input'}>
+            <div>
+                Height:
+                <input
+                    className={'short'}
+                    placeholder={'0'}
+                    name={'height'}
+                    value={formData.height}
+                    onChange={handleChange}
+                />
+                cm.
+            </div>
+            <input
+                type={'range'}
+                name={'height'}
+                disabled={formData.race === -1}
+                min={races[formData.race]?.height.min}
+                max={races[formData.race]?.height.max}
+                value={formData.height}
+                onChange={handleChange}
+            />
+        </div>
+        
+        <div className={'range-input'}>
+            <div>
+                Age:
+                <input
+                    className={'short'}
+                    placeholder={'0'}
+                    name={'age'}
+                    value={formData.age}
+                    onChange={handleChange}
+                />
+                years
+            </div>
+            <input
+                type={'range'}
+                name={'age'}
+                disabled={formData.race === -1}
+                min={races[formData.race]?.age.min}
+                max={races[formData.race]?.age.max}
+                value={formData.age}
+                onChange={handleChange}
+            />
+        </div>
+        
+        <button
+            className={'primary'}
+            children={'Next'}
+            disabled={!validSection()}
+            onClick={() => {
+                if ( validSection() ) {
+                    setState({
+                        section : 1
+                    })
+                }
+            }}
+        />
+    </div>
+}
+
+function AbilitySection( props ) {
+    const { section, swapStats, formData, validSend, rolledStats, rollData, rollAbility, assignRoll, trySwap, doSend, setState } = props;
+    
+    return <div className={'section' + (section === 1 ? '' : ' hidden')}>
+        <h1>
+            Abilities
+        </h1>
+        {rolledStats < 6 ?
+            <div className={'ability-roll'}>
+                <div className={'rolls-display'}>
+                    {rollData.rolls.map(( item, i ) => {
+                        return <div key={i}>
+                            {item}
+                        </div>
+                    })}
+                </div>
+                
+                <button
+                    className={'primary' + (rollData.rolled ? ' success' : '')}
+                    onClick={() => {
+                        if ( !rollData.rolling && !rollData.rolled ) {
+                            rollAbility()
+                        }
+                    }}
+                >
+                    {rollData.rolled ? rollData.total : 'Roll'}
+                </button>
+            </div> : <Fragment />
+        }
+        <div className={'ability-list'}>
+            {abilities.map(( item, i ) => {
+                return <button
+                    className={'secondary ability-display' + (formData.stats[i] !== 0 ? (swapStats[0] === i || swapStats[1] === i ? ' pending' : ' success') : '')}
+                    title={'Assign to ' + item.name}
+                    key={i}
+                    onClick={() => {
+                        if ( formData.stats[i] === 0 ) {
+                            assignRoll(i)
+                        } else if ( rolledStats === 6 ) {
+                            trySwap(i)
+                        }
+                    }}
+                >
+                    {item.shortname + ' : ' + formData.stats[i]}
+                </button>
+            })}
+        </div>
+        
+        <div className={'input-group'}>
+            <button
+                className={'secondary'}
+                children={'Back'}
+                onClick={() =>
+                    setState({
+                        section : 0
+                    })}
+            />
+            <button
+                className={'primary'}
+                children={'Crear'}
+                onClick={() => {
+                    if ( validSend() ) {
+                        doSend()
+                    }
+                }}
+            />
+        </div>
+    </div>
 }
