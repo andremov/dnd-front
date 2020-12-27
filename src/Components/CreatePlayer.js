@@ -1,4 +1,4 @@
-import React, { Component, Fragment, useState } from "react";
+import React, { Component, Fragment } from "react";
 import { abilities, alignments, classes, races } from "../Utils/Data";
 import { RollDie } from "../Utils/Functions";
 
@@ -126,21 +126,42 @@ export class CreatePlayer extends Component {
     assignRoll = ( id ) => {
         let { stats } = this.state.formData;
         let { rollData } = this.state;
+        if ( rollData.rolled ) {
+            stats[id] = rollData.total
+            
+            this.setState({
+                formData : {
+                    ...this.state.formData,
+                    stats
+                },
+                rollData : {
+                    rolls : [ 0, 0, 0 ],
+                    rolled : false,
+                    rolling : false,
+                    total : 0
+                },
+                rolledStats : this.state.rolledStats + 1
+            })
+        }
+    }
+    
+    trySwap = ( id = -1 ) => {
+        let { swapStats, formData } = this.state;
+        let { stats } = formData
         
-        stats[id] = rollData.total
+        if ( swapStats[0] === -1 ) {
+            swapStats[0] = id;
+        } else if ( swapStats[1] === -1 ) {
+            swapStats[1] = id;
+            setTimeout(this.trySwap, 200)
+        } else {
+            let stat1 = stats[swapStats[0]]
+            stats[swapStats[0]] = stats[swapStats[1]]
+            stats[swapStats[1]] = stat1
+            swapStats = [ -1, -1 ]
+        }
         
-        this.setState({
-            formData : {
-                ...this.state.formData,
-                stats
-            },
-            rollData : {
-                rolls : [ 0, 0, 0 ],
-                rolled : false,
-                rolling : false,
-                total : 0
-            },
-        })
+        this.setState({ swapStats, formData : { ...formData, stats } })
     }
     
     render = () => {

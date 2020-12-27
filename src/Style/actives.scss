@@ -51,6 +51,12 @@ button {
   &.failure {
     background: $failure-color;
   }
+
+  &.pending {
+    background: $pending-color;
+    color: white;
+    border-color: transparent;
+  }
 }
 
 input, select {
