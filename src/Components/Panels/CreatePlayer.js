@@ -19,6 +19,7 @@ export class CreatePlayer extends Component {
             
             height : 0,
             age : 0,
+            background : ''
         },
         section : 0,
         rollData : {
@@ -93,7 +94,7 @@ export class CreatePlayer extends Component {
         }
     }
     
-    validSection = () => {
+    validSection1 = () => {
         let { formData } = this.state;
         
         return (
@@ -108,8 +109,7 @@ export class CreatePlayer extends Component {
             formData.height >= races[formData.race].height.min
         )
     }
-    
-    validSend = () => {
+    validSection2 = () => {
         let { formData } = this.state;
         
         return (
@@ -122,6 +122,14 @@ export class CreatePlayer extends Component {
         )
     }
     
+    validSend = () => {
+        let { formData } = this.state;
+        
+        return (
+            !!formData.background
+        )
+    }
+    
     doSend = () => {
         sendCharacter(this.state.formData).then(r => {
             console.log(r.message)
@@ -129,9 +137,9 @@ export class CreatePlayer extends Component {
         
         this.props.eventCallback({ action : 'go_to_destination' })
         setTimeout(() => {
-            this.props.eventCallback({ action : 'change_destination', data : { destination : 'enter' }  })
+            this.props.eventCallback({ action : 'change_destination', data : { destination : 'enter' } })
             setTimeout(() => {
-                this.props.eventCallback({ action : 'go_to_destination'  })
+                this.props.eventCallback({ action : 'go_to_destination' })
             }, 1000)
         }, 1000)
     }
@@ -188,7 +196,7 @@ export class CreatePlayer extends Component {
                     section={section}
                     formData={formData}
                     handleChange={this.handleChange}
-                    validSection={this.validSection}
+                    validSection={this.validSection1}
                     setState={( data ) => this.setState(data)}
                 />
                 <div className={'color-bar'} />
@@ -196,12 +204,20 @@ export class CreatePlayer extends Component {
                     section={section}
                     formData={formData}
                     swapStats={swapStats}
-                    validSend={this.validSend}
+                    validSection={this.validSection2}
                     rolledStats={rolledStats}
                     rollData={rollData}
                     rollAbility={this.rollAbility}
                     assignRoll={this.assignRoll}
                     trySwap={this.trySwap}
+                    setState={( data ) => this.setState(data)}
+                />
+                <div className={'color-bar'} />
+                <BackgroundSection
+                    section={section}
+                    formData={formData}
+                    handleChange={this.handleChange}
+                    validSend={this.validSend}
                     doSend={this.doSend}
                     setState={( data ) => this.setState(data)}
                 />
@@ -345,7 +361,7 @@ function BasicSection( props ) {
 }
 
 function AbilitySection( props ) {
-    const { section, swapStats, formData, validSend, rolledStats, rollData, rollAbility, assignRoll, trySwap, doSend, setState } = props;
+    const { section, swapStats, validSection, formData, rolledStats, rollData, rollAbility, assignRoll, trySwap,  setState } = props;
     
     return <div className={'section' + (section === 1 ? '' : ' hidden')}>
         <h1>
@@ -377,7 +393,7 @@ function AbilitySection( props ) {
             {abilities.map(( item, i ) => {
                 return <button
                     className={'secondary ability-display' + (formData.stats[i] !== 0 ? (swapStats[0] === i || swapStats[1] === i ? ' pending' : ' success') : '')}
-                    title={rolledStats === 6? 'Swap '+item.name : 'Assign to ' + item.name}
+                    title={rolledStats === 6 ? 'Swap ' + item.name : 'Assign to ' + item.name}
                     key={i}
                     onClick={() => {
                         if ( formData.stats[i] === 0 ) {
@@ -403,7 +419,44 @@ function AbilitySection( props ) {
             />
             <button
                 className={'primary'}
+                children={'Next'}
+                disabled={!validSection()}
+                onClick={() => {
+                    if ( validSection() ) {
+                        setState({
+                            section : 2
+                        })
+                    }
+                }}
+            />
+        </div>
+    </div>
+}
+
+function BackgroundSection( props ) {
+    const { section, formData, handleChange, setState, validSend, doSend } = props;
+    
+    return <div className={'section' + (section === 2 ? '' : ' hidden')}>
+        <textarea
+            placeholder={'Background'}
+            name={'background'}
+            value={formData.background}
+            onChange={handleChange}
+        />
+    
+        <div className={'input-group'}>
+            <button
+                className={'secondary'}
+                children={'Back'}
+                onClick={() =>
+                    setState({
+                        section : 1
+                    })}
+            />
+            <button
+                className={'primary'}
                 children={'Create'}
+                disabled={!validSend()}
                 onClick={() => {
                     if ( validSend() ) {
                         doSend()
@@ -411,5 +464,6 @@ function AbilitySection( props ) {
                 }}
             />
         </div>
+        
     </div>
 }
