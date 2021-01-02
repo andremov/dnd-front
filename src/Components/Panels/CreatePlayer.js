@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from "react";
-import { abilities, alignments, classes, races } from "../Utils/Data";
-import { RollDie } from "../Utils/Functions";
-import { sendCharacter } from "../Services/api";
+import { abilities, alignments, classes, races } from "../../Utils/Data";
+import { RollDie } from "../../Utils/Functions";
+import { sendCharacter } from "../../Services/api";
 
 export class CreatePlayer extends Component {
     

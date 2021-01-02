@@ -1,16 +1,16 @@
 import React from 'react';
-import { abilities, alignments, classes, races } from "../Utils/Data";
-import { Gem } from "./Gem";
+import { abilities, alignments, classes, races } from "../../Utils/Data";
+import { Gem } from "../Gem";
 
-export function CharacterInfo( { player_data } ) {
-    console.log(player_data)
+export function CharacterInfo( { player_data, cardCallback } ) {
+    
     return (
         <div className={'char-info'}>
-    
+            
             <h1>{player_data.name + ' ' + player_data.family}</h1>
             
             <div className={'section basic'}>
-    
+                
                 <h2>Character Info</h2>
                 <div className={'two-gems'}>
                     <Gem
@@ -62,11 +62,11 @@ export function CharacterInfo( { player_data } ) {
             
             <div className={'section basic'}>
                 <h2>Basic Info</h2>
-    
+                
                 <div className={'one-gem'}>
                     <Gem
                         color={'red'}
-                        text={'Level '+player_data.level}
+                        text={'Level ' + player_data.level}
                         title={'Level'}
                         type={2}
                         side={'right'}
@@ -127,7 +127,7 @@ export function CharacterInfo( { player_data } ) {
                 <div className={'two-gems'}>
                     <Gem
                         color={'purple'}
-                        text={abilities[0].shortname+': '+player_data.stats[0]}
+                        text={abilities[0].shortname + ': ' + player_data.stats[0]}
                         title={abilities[0].name}
                         type={2}
                         side={'right'}
@@ -137,7 +137,7 @@ export function CharacterInfo( { player_data } ) {
                     />
                     <Gem
                         color={'purple'}
-                        text={abilities[1].shortname+': '+player_data.stats[1]}
+                        text={abilities[1].shortname + ': ' + player_data.stats[1]}
                         title={abilities[1].name}
                         type={2}
                         side={'right'}
@@ -146,10 +146,11 @@ export function CharacterInfo( { player_data } ) {
                         full={true}
                     />
                 </div>
+                
                 <div className={'two-gems'}>
                     <Gem
                         color={'purple'}
-                        text={abilities[2].shortname+': '+player_data.stats[2]}
+                        text={abilities[2].shortname + ': ' + player_data.stats[2]}
                         title={abilities[2].name}
                         type={2}
                         side={'right'}
@@ -159,7 +160,7 @@ export function CharacterInfo( { player_data } ) {
                     />
                     <Gem
                         color={'purple'}
-                        text={abilities[3].shortname+': '+player_data.stats[3]}
+                        text={abilities[3].shortname + ': ' + player_data.stats[3]}
                         title={abilities[3].name}
                         type={2}
                         side={'right'}
@@ -168,10 +169,11 @@ export function CharacterInfo( { player_data } ) {
                         full={true}
                     />
                 </div>
+                
                 <div className={'two-gems'}>
                     <Gem
                         color={'purple'}
-                        text={abilities[4].shortname+': '+player_data.stats[4]}
+                        text={abilities[4].shortname + ': ' + player_data.stats[4]}
                         title={abilities[4].name}
                         type={2}
                         side={'right'}
@@ -181,7 +183,7 @@ export function CharacterInfo( { player_data } ) {
                     />
                     <Gem
                         color={'purple'}
-                        text={abilities[5].shortname+': '+player_data.stats[5]}
+                        text={abilities[5].shortname + ': ' + player_data.stats[5]}
                         title={abilities[5].name}
                         type={2}
                         side={'right'}
@@ -190,6 +192,54 @@ export function CharacterInfo( { player_data } ) {
                         full={true}
                     />
                 </div>
+            </div>
+            
+            <div className={'one-gem'}>
+                <button
+                    className={'primary'}
+                    children={'Ability Check'}
+                    onClick={() => {
+                        cardCallback({
+                            action : 'add',
+                            data : {
+                                card_name : 'loading',
+                                card_destination : 'roll_info'
+                            }
+                        })
+                    }}
+                />
+            </div>
+    
+            <div className={'one-gem'}>
+                <button
+                    className={'primary'}
+                    children={'Inventory'}
+                    onClick={() => {
+                        cardCallback({
+                            action : 'add',
+                            data : {
+                                card_name : 'loading',
+                                card_destination : 'inventory'
+                            }
+                        })
+                    }}
+                />
+            </div>
+    
+            <div className={'one-gem'}>
+                <button
+                    className={'primary'}
+                    children={'Notes'}
+                    onClick={() => {
+                        cardCallback({
+                            action : 'add',
+                            data : {
+                                card_name : 'loading',
+                                card_destination : 'notes'
+                            }
+                        })
+                    }}
+                />
             </div>
         </div>
     );

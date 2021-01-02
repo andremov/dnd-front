@@ -32,7 +32,7 @@ export function RaceInfo( { card_data } ) {
                         </div>
                         {skill_bonus.map(( item, i ) => {
                             return <div key={i}>
-                                {skills[item.id]}: +{item.bonus}
+                                {skills[item.id].name}: +{item.bonus}
                             </div>
                         })}
                     </Fragment> : <Fragment />

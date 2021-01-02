@@ -1,14 +1,17 @@
 import React, { Fragment } from "react";
-import { AlignmentInfo } from "../Components/InfoCards/AlignmentInfo";
-import { ClassInfo } from "../Components/InfoCards/ClassInfo";
-import { RaceInfo } from "../Components/InfoCards/RaceInfo";
-import { CreatePlayer } from "../Components/CreatePlayer";
-import { EnterForm } from "../Components/EnterForm";
+import { AlignmentInfo } from "../Components/Cards/AlignmentInfo";
+import { ClassInfo } from "../Components/Cards/ClassInfo";
+import { RaceInfo } from "../Components/Cards/RaceInfo";
+import { CreatePlayer } from "../Components/Panels/CreatePlayer";
+import { EnterForm } from "../Components/Panels/EnterForm";
 import { Loading } from "../Components/Loading";
 import { ExitButton } from "../Components/ExitButton";
 import { AppCard } from "../Components/AppCard";
-import { AbilityInfo } from "../Components/InfoCards/AbilityInfo";
-import { CharacterInfo } from "../Components/CharacterInfo";
+import { AbilityInfo } from "../Components/Cards/AbilityInfo";
+import { CharacterInfo } from "../Components/Panels/CharacterInfo";
+import { RollInfo } from "../Components/Cards/RollInfo";
+import { Notes } from "../Components/Cards/Notes";
+import { Inventory } from "../Components/Cards/Inventory";
 
 export const card_states = {
     hidden : {
@@ -100,6 +103,19 @@ export const card_states = {
             </AppCard>
         }
     },
+    roll_info : {
+        component : ( props ) => {
+            return <RollInfo
+                {...props}
+            />
+        },
+        card : ( props ) => {
+            return <AppCard
+                {...props}
+                className={'dims_roll_info'}
+            >
+                {card_states['roll_info'].component(props)}
+            </AppCard>
 }
 
 export const panel_states = {
@@ -138,35 +154,35 @@ export const panel_states = {
 
 export const skills = [
     // 0
-    'Athletics',
-    'Acrobatics',
-    'Stealth',
-    'Sleight of Hand',
-    'Arcana',
+    {name: 'Athletics', id: 0},
+    {name: 'Acrobatics', id: 1},
+    {name: 'Stealth', id: 2},
+    {name: 'Sleight of Hand', id: 3},
+    {name: 'Arcana', id: 4},
     
     // 5
-    'History',
-    'Research',
-    'Nature',
-    'Religion',
-    'Animal Handling',
+    {name: 'History', id: 5},
+    {name: 'Research', id: 6},
+    {name: 'Nature', id: 7},
+    {name: 'Religion', id: 8},
+    {name: 'Animal Handling', id: 9},
     
     // 10
-    'Perception',
-    'Insight',
-    'Medicine',
-    'Survival Skills',
-    'Deceit',
+    {name: 'Perception', id: 10},
+    {name: 'Insight', id: 11},
+    {name: 'Medicine', id: 12},
+    {name: 'Survival Skills', id: 13},
+    {name: 'Deceit', id: 14},
     
     // 15
-    'Intimidation',
-    'Performance',
-    'Persuasion',
-    'Toughness',
-    'Lung Capacity',
+    {name: 'Intimidation', id: 15},
+    {name: 'Performance', id: 16},
+    {name: 'Persuasion', id: 17},
+    {name: 'Toughness', id: 18},
+    {name: 'Lung Capacity', id: 19},
     
     // 20
-    'Poison Resistance'
+    {name: 'Poison Resistance', id: 20},
 ]
 
 export const abilities = [

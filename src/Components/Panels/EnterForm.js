@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { findCharacter } from "../Services/api";
+import { findCharacter } from "../../Services/api";
 
 export function EnterForm( { setPlayerData, eventCallback } ) {
     const [ codename, setCodename ] = useState('arthas');

@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { card_states, panel_states } from "./Utils/Data";
 import { Header } from "./Components/Header";
 import { Panel } from "./Components/Panel";
+import { findCharacter } from "./Services/api";
 
 export class App extends Component {
     
@@ -20,6 +21,14 @@ export class App extends Component {
         setTimeout(() => {
             this.handlePanel({ action : 'go_to_destination' })
         }, 1000)
+    }
+    
+    updatePlayerData = () => {
+        findCharacter(this.state.player_data.codename).then(r => {
+            this.setState({
+                player_data : r
+            })
+        })
     }
     
     handleCard = ( { action, card_id, data } ) => {
@@ -153,10 +162,12 @@ export class App extends Component {
                             card_data : panel_data,
                             player_data : player_data,
                             eventCallback : this.handlePanel,
+                            cardCallback : this.handleCard,
                             setPlayerData : (data) => {
                                 this.setState({
                                     player_data : data
                                 })
+                                setInterval(this.updatePlayerData, 5000);
                             }
                         }
                     )}
