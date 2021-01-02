@@ -54,7 +54,7 @@ export class CreatePlayer extends Component {
         this.wrapFormData(d)
     }
     
-    rollAbility = ( index = 0, missing_rolls = 20 ) => {
+    rollAbility = ( index = 0, missing_rolls = 1 ) => {
         
         this.setState({
             rollData : {

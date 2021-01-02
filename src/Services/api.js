@@ -22,6 +22,7 @@ export function sendCharacter( object ) {
 
 export function findCharacter( codename ) {
     return API.get('/players/find', { params : { codename } }).then(r => {
+        r.data.stats = JSON.parse(r.data.stats)
         return r.data;
     })
 }

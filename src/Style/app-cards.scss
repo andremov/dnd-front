@@ -258,13 +258,18 @@
   padding: 20px;
   box-sizing: border-box;
 
+  h2 {
+    margin-top: 20px;
+  }
+
   .one-gem {
-    > .gem-socket {
+    > * {
       justify-content: center;
     }
   }
 
   .two-gems {
     display: flex;
+    justify-content: space-evenly;
   }
 }

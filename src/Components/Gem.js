@@ -25,7 +25,15 @@ export function Gem( props ) {
     const { color = 'gray', text = '?', type = 0, side = 'left', blend = true, shadow = false, full = false } = props;
     
     return (
-        <div className={'gem-socket ' + side + (blend ? ' blend' : '') + (shadow ? ' shadow' : '') + (full ? ' full-width' : '')}>
+        <div
+            className={
+                'gem-socket ' + side +
+                (blend ? ' blend' : '') +
+                (shadow ? ' shadow' : '') +
+                (full ? ' full-width' : '')
+            }
+            title={props.title}
+        >
             <div className={'gem-text'} style={{ backgroundColor : gem_colors[color] }}>
                 <div className={'back-drop'}>
                     {text}
@@ -58,6 +66,6 @@ function Gemstone( { type, color } ) {
         case 8:
             return <Gem8 style={{ fill : gem_colors[color] }} />
         default:
-            return <> </>
+            return <svg> </svg>
     }
 }
