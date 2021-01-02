@@ -1,9 +1,9 @@
 import React  from "react";
-import { classes } from "../../Utils/Data";
+import { alignments, classes } from "../../Utils/Data";
 import { Gem } from "../Gem";
 
 export function ClassInfo( { card_data } ) {
-    const { name, hit_dice, armor, weapons } = classes[card_data.item_id]
+    const { name, hit_dice, armor, weapons, alignment } = classes[card_data.item_id]
     return <div className={'class_info'}>
         <h1>{name}</h1>
         
@@ -20,6 +20,13 @@ export function ClassInfo( { card_data } ) {
                     Hit Die:{' '}
                 </span>
                 {hit_dice}
+            </div>
+    
+            <div>
+                <span style={{ fontWeight : 'bold' }}>
+                    Base Alignment:{' '}
+                </span>
+                {alignments[alignment].name}
             </div>
         </div>
         

@@ -291,7 +291,7 @@
 
 .notes {
   @extend .app-card-contents;
-  @extend .dims_roll_info;
+  @extend .dims_notes;
 
 }
 
@@ -324,4 +324,44 @@
       color: white;
     }
   }
+}
+
+.dims_bkg {
+  width: 400px;
+  height: 250px;
+  min-width: 400px;
+  min-height: 250px;
+}
+
+.background {
+  @extend .app-card-contents;
+  @extend .dims_bkg;
+
+}
+
+.dims_spells {
+  width: 400px;
+  height: 250px;
+  min-width: 400px;
+  min-height: 250px;
+}
+
+.notes {
+  @extend .app-card-contents;
+  @extend .dims_spells;
+
+}
+
+
+.dims_class_quest {
+  width: 400px;
+  height: 250px;
+  min-width: 400px;
+  min-height: 250px;
+}
+
+.notes {
+  @extend .app-card-contents;
+  @extend .dims_class_quest;
+
 }

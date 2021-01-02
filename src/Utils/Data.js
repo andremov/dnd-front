@@ -12,6 +12,9 @@ import { CharacterInfo } from "../Components/Panels/CharacterInfo";
 import { RollInfo } from "../Components/Cards/RollInfo";
 import { Notes } from "../Components/Cards/Notes";
 import { Inventory } from "../Components/Cards/Inventory";
+import { Background } from "../Components/Cards/Background";
+import { Spellbook } from "../Components/Cards/Spellbook";
+import { ClassQuest } from "../Components/Cards/ClassQuest";
 
 export const card_states = {
     hidden : {
@@ -145,6 +148,51 @@ export const card_states = {
                 className={'dims_notes'}
             >
                 {card_states['notes'].component(props)}
+            </AppCard>
+        }
+    },
+    bkg_story : {
+        component : ( props ) => {
+            return <Background
+                {...props}
+            />
+        },
+        card : ( props ) => {
+            return <AppCard
+                {...props}
+                className={'dims_bkg'}
+            >
+                {card_states['bkg_story'].component(props)}
+            </AppCard>
+        }
+    },
+    spells : {
+        component : ( props ) => {
+            return <Spellbook
+                {...props}
+            />
+        },
+        card : ( props ) => {
+            return <AppCard
+                {...props}
+                className={'dims_spells'}
+            >
+                {card_states['spells'].component(props)}
+            </AppCard>
+        }
+    },
+    class_quest : {
+        component : ( props ) => {
+            return <ClassQuest
+                {...props}
+            />
+        },
+        card : ( props ) => {
+            return <AppCard
+                {...props}
+                className={'dims_class_quest'}
+            >
+                {card_states['class_quest'].component(props)}
             </AppCard>
         }
     },
@@ -544,6 +592,7 @@ export const classes = [
         name : 'Barbarian',
         id : 0,
         hit_dice : 12,
+        alignment : 5,
         armor : {
             light : true,
             medium : true
@@ -563,6 +612,7 @@ export const classes = [
         name : 'Bard',
         id : 1,
         hit_dice : 8,
+        alignment : 1,
         armor : {
             light : true,
         },
@@ -579,6 +629,7 @@ export const classes = [
         name : 'Warrior',
         id : 2,
         hit_dice : 10,
+        alignment : 4,
         armor : {
             light : true,
             medium : true,
@@ -600,6 +651,7 @@ export const classes = [
         name : 'Monk',
         id : 3,
         hit_dice : 8,
+        alignment : 3,
         armor : {
             light : true
         },
@@ -616,6 +668,7 @@ export const classes = [
         name : 'Paladin',
         id : 4,
         hit_dice : 10,
+        alignment : 0,
         armor : {
             light : true,
             medium : true,
@@ -637,6 +690,7 @@ export const classes = [
         name : 'Ranger',
         id : 5,
         hit_dice : 10,
+        alignment : 1,
         armor : {
             light : true,
             medium : true,
@@ -656,6 +710,7 @@ export const classes = [
         name : 'Rogue',
         id : 6,
         hit_dice : 8,
+        alignment : 7,
         armor : {
             light : true
         },
@@ -674,6 +729,7 @@ export const classes = [
         name : 'Sorcerer',
         id : 7,
         hit_dice : 6,
+        alignment : 1,
         armor : {
             light : true,
             medium : true,
@@ -691,6 +747,7 @@ export const classes = [
         name : 'Warlock',
         id : 8,
         hit_dice : 8,
+        alignment : 7,
         armor : {
             light : true,
         },
@@ -707,6 +764,7 @@ export const classes = [
         name : 'Wizard',
         id : 9,
         hit_dice : 6,
+        alignment : 2,
         armor : {
             light : true,
         },
@@ -723,6 +781,7 @@ export const classes = [
         name : 'Cleric',
         id : 10,
         hit_dice : 8,
+        alignment : 1,
         armor : {
             light : true,
             medium : true,
