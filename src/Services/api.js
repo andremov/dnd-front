@@ -26,3 +26,10 @@ export function findCharacter( codename ) {
         return r.data;
     })
 }
+
+
+export function fetchInventory( id ) {
+    return API.get('/items/find', { params : { id } }).then(r => {
+        return r.data;
+    })
+}

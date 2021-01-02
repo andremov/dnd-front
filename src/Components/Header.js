@@ -24,12 +24,39 @@ const items = [
     },
 ]
 
-export function Header( { callback } ) {
+const tools = [
+    {
+        name : 'Class Quest',
+        window_type : 'class_quest'
+    },
+    {
+        name : 'Ability Check',
+        window_type : 'roll_info'
+    },
+    {
+        name : 'Inventory',
+        window_type : 'inventory'
+    },
+    {
+        name : 'Spellbook',
+        window_type : 'spells'
+    },
+    {
+        name : 'Background',
+        window_type : 'bkg_story'
+    },
+    {
+        name : 'Notes',
+        window_type : 'notes'
+    },
+]
+export function Header( { callback, showTools } ) {
     return (
         <header>
             {items.map(( item, i ) => {
                 return <HeaderItem data={item} key={i} callback={callback} />
             })}
+            {showTools? <ToolsItem callback={callback} /> : <></>}
         </header>
     );
 }
@@ -70,3 +97,37 @@ function HeaderItem( { data, callback } ) {
     </div>
 }
 
+function ToolsItem({callback}) {
+    const [ opened, setOpened ] = useState(false)
+    
+    return <div className={'header-item'}>
+        
+        <div className={'item-name' + (opened ? ' open' : '')} onClick={() => setOpened(!opened)}>
+            Tools
+        </div>
+        
+        <ul className={'dropdown-list' + (opened ? ' open' : '')}> {
+            tools.map(( item, i ) => {
+                return <li
+                    className={'dropdown-item'}
+                    key={i}
+                    onClick={
+                        () => {
+                            setOpened(false)
+                            callback({
+                                action : 'add',
+                                data : {
+                                    card_name : 'loading',
+                                    card_destination : item.window_type,
+                                }
+                            })
+                        }
+                    }
+                >
+                    {item.name}
+                </li>
+            })
+        }
+        </ul>
+    </div>
+}

@@ -39,7 +39,25 @@
 
 .app-card-contents {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+  position: relative;
+
+  > * {
+    width: 100%;
+  }
+
+  > h1 {
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 5px;
+    height: 50px;
+    max-height: 50px;
+  }
+
+  > .gem-socket {
+    position: absolute;
+    bottom: 0;
+  }
 }
 
 .dims_hidden {
@@ -91,16 +109,6 @@
   @extend .app-card-contents;
   @extend .dims_race_info;
 
-  > * {
-    width: 100%;
-  }
-
-  > h1 {
-    text-align: center;
-    font-weight: bold;
-    margin-bottom: 5px;
-  }
-
   > .trait-section {
     border-top: 1px solid gray;
     border-bottom: 1px solid gray;
@@ -121,10 +129,6 @@
     padding-top: 10px;
     padding-bottom: 10px;
   }
-
-  > .gem-socket {
-    align-self: flex-end;
-  }
 }
 
 .dims_class_info {
@@ -138,16 +142,6 @@
   @extend .app-card-contents;
   @extend .dims_class_info;
 
-  > * {
-    width: 100%;
-  }
-
-  > h1 {
-    text-align: center;
-    font-weight: bold;
-    margin-bottom: 5px;
-  }
-
   > .info-section {
     border-top: 1px solid gray;
     border-bottom: 1px solid gray;
@@ -158,10 +152,6 @@
   > .equip-section {
     padding-top: 5px;
     padding-bottom: 5px;
-  }
-
-  > .gem-socket {
-    align-self: flex-end;
   }
 
   .invalid {
@@ -180,20 +170,6 @@
 .alignment_info {
   @extend .app-card-contents;
   @extend .dims_alignment_info;
-
-  > * {
-    width: 100%;
-  }
-
-  > h1 {
-    text-align: center;
-    font-weight: bold;
-    margin-bottom: 5px;
-  }
-
-  > .gem-socket {
-    align-self: flex-end;
-  }
 }
 
 .enter-form > .section {
@@ -242,20 +218,6 @@
 .ability_info {
   @extend .app-card-contents;
   @extend .dims_ability_info;
-
-  > * {
-    width: 100%;
-  }
-
-  > h1 {
-    text-align: center;
-    font-weight: bold;
-    margin-bottom: 5px;
-  }
-
-  > .gem-socket {
-    align-self: flex-end;
-  }
 }
 
 .char-info {
@@ -294,17 +256,8 @@
   @extend .app-card-contents;
   @extend .dims_roll_info;
 
-  > * {
-    width: 100%;
-  }
-
-  > h1 {
-    text-align: center;
-    font-weight: bold;
-    margin-bottom: 5px;
-  }
-
   > .roll-guide {
+    margin-top: 20px;
     display: flex;
     justify-content: space-evenly;
 
@@ -338,79 +291,35 @@
   @extend .app-card-contents;
   @extend .dims_roll_info;
 
-  > * {
-    width: 100%;
-  }
-
-  > h1 {
-    text-align: center;
-    font-weight: bold;
-    margin-bottom: 5px;
-  }
-
-  > .roll-guide {
-    display: flex;
-    justify-content: space-evenly;
-
-    > .roll-guide-item {
-      display: flex;
-      align-items: center;
-      flex-direction: column;
-      flex: 1;
-
-      > .item-text {
-        font-size: 1.1em;
-        font-weight: bold;
-      }
-
-      > .item-label {
-        font-size: 0.75em;
-        text-align: center;
-      }
-    }
-  }
 }
 
 .dims_inventory {
   width: 400px;
-  height: 250px;
+  height: 600px;
   min-width: 400px;
-  min-height: 250px;
+  min-height: 600px;
 }
 
 .inventory {
   @extend .app-card-contents;
-  @extend .dims_roll_info;
+  @extend .dims_inventory;
 
-  > * {
-    width: 100%;
-  }
-
-  > h1 {
-    text-align: center;
-    font-weight: bold;
-    margin-bottom: 5px;
-  }
-
-  > .roll-guide {
+  > .item {
     display: flex;
-    justify-content: space-evenly;
-
-    > .roll-guide-item {
+    flex-direction: column;
+    height: 80px;
+    border-radius: 10px;
+    border: 1px solid;
+    overflow: hidden;
+    > div {
+      padding: 7px;
+      box-sizing: border-box;
+    }
+    > :first-child {
       display: flex;
-      align-items: center;
-      flex-direction: column;
-      flex: 1;
-
-      > .item-text {
-        font-size: 1.1em;
-        font-weight: bold;
-      }
-
-      > .item-label {
-        font-size: 0.75em;
-        text-align: center;
-      }
+      justify-content: space-between;
+      background-color: #476b85;
+      color: white;
     }
   }
 }

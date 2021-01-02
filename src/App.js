@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { card_states, panel_states } from "./Utils/Data";
 import { Header } from "./Components/Header";
 import { Panel } from "./Components/Panel";
-import { findCharacter } from "./Services/api";
+import { fetchInventory, findCharacter } from "./Services/api";
 
 export class App extends Component {
     
@@ -26,7 +26,18 @@ export class App extends Component {
     updatePlayerData = () => {
         findCharacter(this.state.player_data.codename).then(r => {
             this.setState({
-                player_data : r
+                player_data : {
+                    ...this.state.player_data,
+                    ...r
+                }
+            })
+        })
+        fetchInventory(this.state.player_data._id).then(r => {
+            this.setState({
+                player_data : {
+                    ...this.state.player_data,
+                    inventory : r
+                }
             })
         })
     }
@@ -154,7 +165,7 @@ export class App extends Component {
         
         return (
             <Fragment>
-                <Header callback={this.handleCard} />
+                <Header callback={this.handleCard} showTools={!!player_data}/>
                 
                 <Panel type={''}>
                     {panel_states[panel_data.name].component(
@@ -162,7 +173,6 @@ export class App extends Component {
                             card_data : panel_data,
                             player_data : player_data,
                             eventCallback : this.handlePanel,
-                            cardCallback : this.handleCard,
                             setPlayerData : (data) => {
                                 this.setState({
                                     player_data : data

@@ -2,7 +2,7 @@ import React from 'react';
 import { abilities, alignments, classes, races } from "../../Utils/Data";
 import { Gem } from "../Gem";
 
-export function CharacterInfo( { player_data, cardCallback } ) {
+export function CharacterInfo( { player_data } ) {
     
     return (
         <div className={'char-info'}>
@@ -194,53 +194,6 @@ export function CharacterInfo( { player_data, cardCallback } ) {
                 </div>
             </div>
             
-            <div className={'one-gem'}>
-                <button
-                    className={'primary'}
-                    children={'Ability Check'}
-                    onClick={() => {
-                        cardCallback({
-                            action : 'add',
-                            data : {
-                                card_name : 'loading',
-                                card_destination : 'roll_info'
-                            }
-                        })
-                    }}
-                />
-            </div>
-    
-            <div className={'one-gem'}>
-                <button
-                    className={'primary'}
-                    children={'Inventory'}
-                    onClick={() => {
-                        cardCallback({
-                            action : 'add',
-                            data : {
-                                card_name : 'loading',
-                                card_destination : 'inventory'
-                            }
-                        })
-                    }}
-                />
-            </div>
-    
-            <div className={'one-gem'}>
-                <button
-                    className={'primary'}
-                    children={'Notes'}
-                    onClick={() => {
-                        cardCallback({
-                            action : 'add',
-                            data : {
-                                card_name : 'loading',
-                                card_destination : 'notes'
-                            }
-                        })
-                    }}
-                />
-            </div>
         </div>
     );
 }
