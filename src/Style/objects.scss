@@ -1,22 +1,19 @@
 @import "variables";
 
-.exit-btn-wrapper {
-  width: 0;
-  height: 0;
-
-  .exit-btn {
-    background-color: #999;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 20px !important;
-    height: 20px !important;
-    border-radius: 50%;
-    font-size: 1.05em;
-    cursor: pointer;
-    transform: translate(10px, 10px);
-  }
+.exit-btn {
+  position: absolute;
+  background-color: #999;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px !important;
+  height: 20px !important;
+  border-radius: 50%;
+  font-size: 1.05em;
+  cursor: pointer;
+  transform: translate(10px, 10px);
+  z-index: 2;
 }
 
 .gem-socket {
