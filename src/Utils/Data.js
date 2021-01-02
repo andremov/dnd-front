@@ -116,6 +116,38 @@ export const card_states = {
             >
                 {card_states['roll_info'].component(props)}
             </AppCard>
+        }
+    },
+    inventory : {
+        component : ( props ) => {
+            return <Inventory
+                {...props}
+            />
+        },
+        card : ( props ) => {
+            return <AppCard
+                {...props}
+                className={'dims_inventory'}
+            >
+                {card_states['inventory'].component(props)}
+            </AppCard>
+        }
+    },
+    notes : {
+        component : ( props ) => {
+            return <Notes
+                {...props}
+            />
+        },
+        card : ( props ) => {
+            return <AppCard
+                {...props}
+                className={'dims_notes'}
+            >
+                {card_states['notes'].component(props)}
+            </AppCard>
+        }
+    },
 }
 
 export const panel_states = {
