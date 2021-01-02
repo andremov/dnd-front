@@ -2,12 +2,14 @@ import React, { Component, Fragment } from 'react';
 import { card_states, panel_states } from "./Utils/Data";
 import { Header } from "./Components/Header";
 import { Panel } from "./Components/Panel";
-import { fetchInventory, findCharacter } from "./Services/api";
+import { fetchInventory, fetchSpells, findCharacter } from "./Services/api";
 
 export class App extends Component {
     
     state = {
         player_data : undefined,
+        player_inventory : [],
+        player_spells : [],
         
         panel_data : {
             name : 'loading',
@@ -26,18 +28,19 @@ export class App extends Component {
     updatePlayerData = () => {
         findCharacter(this.state.player_data.codename).then(r => {
             this.setState({
-                player_data : {
-                    ...this.state.player_data,
-                    ...r
-                }
+                player_data : r
             })
         })
+        
         fetchInventory(this.state.player_data._id).then(r => {
             this.setState({
-                player_data : {
-                    ...this.state.player_data,
-                    inventory : r
-                }
+                player_inventory : r
+            })
+        })
+    
+        fetchSpells(this.state.player_data._id).then(r => {
+            this.setState({
+                player_spells : r
             })
         })
     }
@@ -161,7 +164,7 @@ export class App extends Component {
     }
     
     render() {
-        const { player_data, panel_data, cards_data } = this.state;
+        const { player_data, panel_data, cards_data, player_inventory, player_spells } = this.state;
         
         return (
             <Fragment>
@@ -192,7 +195,7 @@ export class App extends Component {
                                     {
                                         card_data : item,
                                         card_id : i,
-                                        player_data : player_data,
+                                        player_data, player_inventory, player_spells,
                                         eventCallback : this.handleCard
                                     }
                                 )}

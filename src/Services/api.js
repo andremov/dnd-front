@@ -33,3 +33,11 @@ export function fetchInventory( id ) {
         return r.data;
     })
 }
+
+
+
+export function fetchSpells( id ) {
+    return API.get('/spells/find', { params : { id } }).then(r => {
+        return r.data;
+    })
+}

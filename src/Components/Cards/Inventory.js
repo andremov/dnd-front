@@ -1,10 +1,10 @@
 import React from 'react';
 
-export function Inventory( { player_data } ) {
+export function Inventory( { player_inventory } ) {
     return (
         <div className={'inventory'}>
             <h1>Inventory</h1>
-            {player_data.inventory.map(( item, i ) => {
+            {player_inventory.map(( item, i ) => {
                 return <Item key={i} data={item} />
             })}
         </div>

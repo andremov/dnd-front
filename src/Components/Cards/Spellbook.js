@@ -1,10 +1,25 @@
 import React from 'react';
 
-export function Spellbook() {
+export function Spellbook({player_spells}) {
     return (
-        <div>
-            Hello world!
+        <div className={'inventory'}>
+            <h1>Spellbook</h1>
+            {player_spells.map(( item, i ) => {
+                return <Spell key={i} data={item} />
+            })}
         </div>
     );
 }
 
+
+function Spell( { data } ) {
+    return <div className={'item'}>
+        <div>
+            <div>{data.name}</div>
+            <div>x{data.quantity}</div>
+        </div>
+        <div>
+            {data.data}
+        </div>
+    </div>
+}
