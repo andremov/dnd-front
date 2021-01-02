@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { findCharacter } from "../../Services/api";
 
 export function EnterForm( { setPlayerData, eventCallback } ) {
-    const [ codename, setCodename ] = useState('arthas');
+    const [ codename, setCodename ] = useState('');
     
     function requestPlayer() {
         findCharacter(codename).then(r => {
