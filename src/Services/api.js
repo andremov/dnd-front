@@ -27,17 +27,20 @@ export function findCharacter( codename ) {
     })
 }
 
-
 export function fetchInventory( id ) {
     return API.get('/items/find', { params : { id } }).then(r => {
         return r.data;
     })
 }
 
-
-
 export function fetchSpells( id ) {
     return API.get('/spells/find', { params : { id } }).then(r => {
+        return r.data;
+    })
+}
+
+export function modifyCharacter(player_id, changes) {
+    return API.patch('/players/'+player_id, changes).then(r => {
         return r.data;
     })
 }

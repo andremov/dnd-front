@@ -436,12 +436,25 @@ function AbilitySection( props ) {
 function BackgroundSection( props ) {
     const { section, formData, handleChange, setState, validSend, doSend } = props;
     
+    function validCharacter(text) {
+        let re = new RegExp('[a-zA-Z0-9.,!?¡¿-]*');
+        let p = text;
+        let m = p.match(re);
+        return (m[0].length === p.length);
+    }
+    
+    function validateChange(e) {
+        if (validCharacter(e.target.value)) {
+            handleChange(e.target.value)
+        }
+    }
+    
     return <div className={'section' + (section === 2 ? '' : ' hidden')}>
         <textarea
             placeholder={'Background'}
             name={'background'}
             value={formData.background}
-            onChange={handleChange}
+            onChange={validateChange}
         />
     
         <div className={'input-group'}>
