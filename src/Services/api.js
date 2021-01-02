@@ -2,8 +2,8 @@ import axios from "axios";
 import { classes } from "../Utils/Data";
 
 export const API = axios.create({
-    // baseURL : 'https://andremov-dnd-api.glitch.me/',
-    baseURL : 'http://localhost:3030/',
+    baseURL : 'https://andremov-dnd.herokuapp.com/',
+    // baseURL : 'http://localhost:3030/',
     timeout : 5000,
     responseType : 'json',
 });
