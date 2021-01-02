@@ -251,3 +251,20 @@
     align-self: flex-end;
   }
 }
+
+.char-info {
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+
+  .one-gem {
+    > .gem-socket {
+      justify-content: center;
+    }
+  }
+
+  .two-gems {
+    display: flex;
+  }
+}

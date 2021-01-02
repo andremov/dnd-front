@@ -11,6 +11,7 @@ export const API = axios.create({
 export function sendCharacter( object ) {
     return API.post('/players/', {
         ...object,
+        stats : JSON.stringify(object.stats),
         level: 1,
         hit_points : classes[object.char_class].hit_dice,
         max_hit_points : classes[object.char_class].hit_dice

@@ -22,10 +22,10 @@ const gem_colors = {
 }
 
 export function Gem( props ) {
-    const { color = 'gray', text = '?', type = 0, side = 'left', blend = true, shadow = false } = props;
+    const { color = 'gray', text = '?', type = 0, side = 'left', blend = true, shadow = false, full = false } = props;
     
     return (
-        <div className={'gem-socket ' + side + (blend ? ' blend' : '') + (shadow ? ' shadow' : '')}>
+        <div className={'gem-socket ' + side + (blend ? ' blend' : '') + (shadow ? ' shadow' : '') + (full ? ' full-width' : '')}>
             <div className={'gem-text'} style={{ backgroundColor : gem_colors[color] }}>
                 <div className={'back-drop'}>
                     {text}
