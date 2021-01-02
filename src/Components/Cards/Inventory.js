@@ -1,9 +1,9 @@
 import React from 'react';
 
-export function Inventory() {
+export function Inventory({player_data}) {
     return (
-        <div>
-            Hello world!
+        <div className={'inventory'}>
+            {player_data.inventory}
         </div>
     );
 }

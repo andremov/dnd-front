@@ -1,9 +1,9 @@
 import React from 'react';
 
-export function Notes() {
+export function Notes({player_data}) {
     return (
-        <div>
-            Hello world!
+        <div className={'notes'}>
+            {player_data.notes}
         </div>
     );
 }
