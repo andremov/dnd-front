@@ -108,6 +108,7 @@ function ToolsItem( { callback, resetUI } ) {
         </div>
         
         <ul className={'dropdown-list' + (opened ? ' open' : '')}>
+            
             {
                 tools.map(( item, i ) => {
                     return <li
@@ -130,6 +131,7 @@ function ToolsItem( { callback, resetUI } ) {
                     </li>
                 })
             }
+            
             <li
                 className={'dropdown-item'}
                 onClick={

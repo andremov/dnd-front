@@ -318,22 +318,32 @@
   @extend .app-card-contents;
   @extend .dims_inventory;
 
-  > .item {
+  > div {
     display: flex;
     flex-direction: column;
-    height: 80px;
-    border-radius: 10px;
-    border: 1px solid;
-    overflow: hidden;
-    > div {
-      padding: 7px;
-      box-sizing: border-box;
-    }
-    > :first-child {
+    overflow-y: scroll;
+
+    > .item {
       display: flex;
-      justify-content: space-between;
-      background-color: #476b85;
-      color: white;
+      flex-direction: column;
+      height: 80px;
+      min-height: 80px;
+      border-radius: 10px;
+      border: 1px solid;
+      overflow: hidden;
+      margin-bottom: 5px;
+
+      > div {
+        padding: 7px;
+        box-sizing: border-box;
+      }
+
+      > :first-child {
+        display: flex;
+        justify-content: space-between;
+        background-color: #476b85;
+        color: white;
+      }
     }
   }
 }
