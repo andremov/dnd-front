@@ -180,7 +180,7 @@ export class App extends Component {
                                 this.setState({
                                     player_data : data
                                 })
-                                setInterval(this.updatePlayerData, 5000);
+                                setInterval(this.updatePlayerData, 15000);
                             }
                         }
                     )}
