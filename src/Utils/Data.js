@@ -605,7 +605,8 @@ export const classes = [
             martial : {
                 melee : true
             }
-        }
+        },
+        quest : 'Defeat the local goblins, who claim to be the best fighters in the land.'
     },
     
     {
@@ -622,7 +623,8 @@ export const classes = [
                 ranged : true,
             },
             martial : {}
-        }
+        },
+        quest : 'Charm the local goblins and become their leader.'
     },
     
     {
@@ -644,7 +646,8 @@ export const classes = [
             martial : {
                 melee : true
             }
-        }
+        },
+        quest : 'Free the local village from the clutches of the goblins, by any means.'
     },
     
     {
@@ -661,7 +664,8 @@ export const classes = [
                 ranged : true,
             },
             martial : {}
-        }
+        },
+        quest : 'Balance the relations between the village and the goblins.'
     },
     
     {
@@ -683,7 +687,8 @@ export const classes = [
             martial : {
                 melee : true,
             }
-        }
+        },
+        quest : 'Evangelize the village goblins into the light, by any means.'
     },
     
     {
@@ -703,7 +708,8 @@ export const classes = [
             martial : {
                 ranged : true,
             }
-        }
+        },
+        quest : 'Inspect the source of the corruption in the forest, and fix it.'
     },
     
     {
@@ -722,7 +728,8 @@ export const classes = [
             martial : {
                 melee : true,
             }
-        }
+        },
+        quest : 'Rob everyone and leave without getting caught.'
     },
     
     {
@@ -740,7 +747,8 @@ export const classes = [
                 ranged : true,
             },
             martial : {}
-        }
+        },
+        quest : 'Find the source of the evil forces, and lock it away.'
     },
     
     {
@@ -757,7 +765,8 @@ export const classes = [
                 ranged : true,
             },
             martial : {}
-        }
+        },
+        quest : 'Find the source of the evil forces, and control it.'
     },
     
     {
@@ -774,7 +783,8 @@ export const classes = [
                 ranged : true,
             },
             martial : {}
-        }
+        },
+        quest : 'Find the source of the evil forces, and turn it in to the local superior wizard.'
     },
     
     {
@@ -792,8 +802,8 @@ export const classes = [
                 ranged : true,
             },
             martial : {}
-        }
+        },
+        quest : 'Evangelize the village goblins into the light, by convincing them.'
     },
-
-
+    
 ]
