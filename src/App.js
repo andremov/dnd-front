@@ -168,7 +168,11 @@ export class App extends Component {
         
         return (
             <Fragment>
-                <Header callback={this.handleCard} showTools={!!player_data}/>
+                <Header
+                    callback={this.handleCard}
+                    showTools={!!player_data}
+                    resetUI={() => this.setState({cards_data : []})}
+                />
                 
                 <Panel type={''}>
                     {panel_states[panel_data.name].component(

@@ -50,13 +50,14 @@ const tools = [
         window_type : 'notes'
     },
 ]
-export function Header( { callback, showTools } ) {
+
+export function Header( { callback, showTools, resetUI } ) {
     return (
         <header>
             {items.map(( item, i ) => {
                 return <HeaderItem data={item} key={i} callback={callback} />
             })}
-            {showTools? <ToolsItem callback={callback} /> : <></>}
+            {showTools ? <ToolsItem callback={callback} resetUI={resetUI} /> : <></>}
         </header>
     );
 }
@@ -97,7 +98,7 @@ function HeaderItem( { data, callback } ) {
     </div>
 }
 
-function ToolsItem({callback}) {
+function ToolsItem( { callback, resetUI } ) {
     const [ opened, setOpened ] = useState(false)
     
     return <div className={'header-item'}>
@@ -106,28 +107,40 @@ function ToolsItem({callback}) {
             Tools
         </div>
         
-        <ul className={'dropdown-list' + (opened ? ' open' : '')}> {
-            tools.map(( item, i ) => {
-                return <li
-                    className={'dropdown-item'}
-                    key={i}
-                    onClick={
-                        () => {
-                            setOpened(false)
-                            callback({
-                                action : 'add',
-                                data : {
-                                    card_name : 'loading',
-                                    card_destination : item.window_type,
-                                }
-                            })
+        <ul className={'dropdown-list' + (opened ? ' open' : '')}>
+            {
+                tools.map(( item, i ) => {
+                    return <li
+                        className={'dropdown-item'}
+                        key={i}
+                        onClick={
+                            () => {
+                                setOpened(false)
+                                callback({
+                                    action : 'add',
+                                    data : {
+                                        card_name : 'loading',
+                                        card_destination : item.window_type,
+                                    }
+                                })
+                            }
                         }
+                    >
+                        {item.name}
+                    </li>
+                })
+            }
+            <li
+                className={'dropdown-item'}
+                onClick={
+                    () => {
+                        setOpened(false)
+                        resetUI()
                     }
-                >
-                    {item.name}
-                </li>
-            })
-        }
+                }
+            >
+                Reset UI
+            </li>
         </ul>
     </div>
 }
