@@ -46,6 +46,7 @@ export function RollInfo( { player_data } ) {
     
     function chooseAbility( value ) {
         setAbility(parseInt(value))
+        setSkill(-1)
     }
     
     function chooseSkill( value ) {
