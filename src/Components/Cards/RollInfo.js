@@ -15,12 +15,13 @@ export function RollInfo( { player_data } ) {
     
     let rac_ab_mod = 0;
     if ( ability !== -1 ) {
-        rac_ab_mod = races[player_data.race].ability_bonus.filter(item => item.id === ability)[0]?.bonus / 2
+        let ab_mod = races[player_data.race].ability_bonus.filter(item => item.id === ability)[0]?.bonus / 2;
+        rac_ab_mod = ab_mod ? ab_mod : rac_ab_mod;
     }
     
     let rac_sk_mod = 0;
     if ( skill !== -1 ) {
-        let sk_mod = races[player_data.race].skill_bonus.filter(item => item.id === skill)[0]?.bonus
+        let sk_mod = races[player_data.race].skill_bonus.filter(item => item.id === skill)[0]?.bonus;
         rac_sk_mod = sk_mod ? sk_mod : rac_sk_mod;
     }
     
