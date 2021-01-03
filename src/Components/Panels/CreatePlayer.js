@@ -445,7 +445,7 @@ function BackgroundSection( props ) {
     
     function validateChange(e) {
         if (validCharacter(e.target.value)) {
-            handleChange(e.target.value)
+            handleChange(e)
         }
     }
     
