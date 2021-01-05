@@ -1,43 +1,5 @@
 @import "variables";
 
-//.main-panel {
-//  height: calc(100vh - 70px);
-//  width: 35%;
-//  min-width: 30%;
-//  background-color: white;
-//  display: flex;
-//  align-items: center;
-//  justify-content: center;
-//  overflow-x: hidden;
-//}
-
-//.card-holder-panel {
-//  width: 65%;
-//  height: calc(100vh - 70px);
-//
-//  > .board {
-//    min-width: 100%;
-//    min-height: 100%;
-//    overflow-x: scroll;
-//    display: flex;
-//    align-items: center;
-//  }
-//}
-//
-//.app-card {
-//  position: relative;
-//  padding: 10px;
-//  //background-color: white;
-//  border-radius: 10px;
-//  box-shadow: 0 5px 5px 2px #00000077;
-//  //box-sizing: border-box;
-//  width: fit-content;
-//  transition: 0.25s;
-//  overflow: hidden;
-//  margin: 10px;
-//  background: radial-gradient(circle at 0% 100%, #a7a7a7 0%, #ffffff 30%);
-//}
-
 .app-card-contents {
   cursor: pointer;
   display: flex;
@@ -84,37 +46,6 @@
   }
 }
 
-//.dims_hidden {
-//  width: 0;
-//  height: 0;
-//}
-//
-//.hidden {
-//  @extend .dims_hidden;
-//  box-shadow: none;
-//  padding: 0;
-//  margin: 0;
-//}
-//
-//.enter {
-//  width: 400px;
-//  height: 300px;
-//}
-//
-//.dims_loading {
-//  width: 100px;
-//  height: 100px;
-//  min-width: 100px;
-//  min-height: 100px;
-//}
-//
-//.loading {
-//  @extend .dims_loading;
-//  display: flex;
-//  align-items: center;
-//  justify-content: center;
-//}
-
 .new-player {
   width: 100%;
   height: 500px;
@@ -122,13 +53,11 @@
   padding-right: 10px;
 }
 
-.race_info {
+.race-card {
   @extend .app-card-contents;
 
-  &.opened {
     height: 300px;
     min-height: 300px;
-  }
 
   > .trait-section {
     border-top: 1px solid gray;
@@ -155,10 +84,8 @@
 .class-card {
   @extend .app-card-contents;
 
-  &.opened {
     min-height: 300px;
     height: 300px;
-  }
 
   > .info-section {
     border-top: 1px solid gray;
@@ -178,16 +105,10 @@
   }
 }
 
-.dims_alignment_info {
-  width: 300px;
-  height: 350px;
-  min-width: 300px;
-  min-height: 350px;
-}
-
-.alignment_info {
+.alignment-card {
   @extend .app-card-contents;
-  @extend .dims_alignment_info;
+  height: 220px;
+  min-height: 220px;
 }
 
 .enter-form > .section {

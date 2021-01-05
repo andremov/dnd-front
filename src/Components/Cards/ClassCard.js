@@ -5,7 +5,7 @@ import { Gem } from "../Gem";
 export function ClassCard( { class_data, openCallback, opened } ) {
     const { name, hit_dice, armor, weapons, alignment } = class_data;
     
-    return <div className={'class-card ' + (opened ? 'opened' : 'closed')} onClick={openCallback}>
+    return <div className={'class-card ' + (opened ? '' : 'closed')} onClick={openCallback}>
         <h1>{name}</h1>
         
         <div className={'info-section'}>

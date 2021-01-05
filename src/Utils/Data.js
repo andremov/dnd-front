@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import { AlignmentInfo } from "../Components/Cards/AlignmentInfo";
+import { AlignmentCard } from "../Components/Cards/AlignmentCard";
 import { ClassCard } from "../Components/Cards/ClassCard";
 import { RaceCard } from "../Components/Cards/RaceCard";
 import { CreatePlayer } from "../Components/Panels/CreatePlayer";
@@ -18,221 +18,221 @@ import { ClassesInfo } from "../Components/Panels/ClassesInfo";
 import { RacesInfo } from "../Components/Panels/RacesInfo";
 import { AlignmentsInfo } from "../Components/Panels/AlignmentsInfo";
 
-export const card_states = {
-    hidden : {
-        component : ( props ) => {
-            return <Fragment />
-        },
-        card :
-            ( props ) => {
-                return <AppCard
-                    {...props}
-                    showExitBtn={false}
-                    className={'dims_hidden'}
-                >
-                    {card_states['hidden'].component(props)}
-                </AppCard>
-            }
-    },
-    loading : {
-        component : ( props ) => {
-            return <Loading />
-        },
-        card : ( props ) => {
-            return <AppCard
-                {...props}
-                showExitBtn={false}
-                className={'dims_loading'}
-            >
-                {card_states['loading'].component(props)}
-            </AppCard>
-        }
-    },
-    race_info : {
-        component : ( props ) => {
-            return <RaceCard
-                {...props}
-            />
-        },
-        card : ( props ) => {
-            return <AppCard
-                {...props}
-                className={'dims_race_info'}
-            >
-                {card_states['race_info'].component(props)}
-            </AppCard>
-        }
-    },
-    class_info : {
-        component : ( props ) => {
-            return <ClassCard
-                {...props}
-            />
-        },
-        card : ( props ) => {
-            return <AppCard
-                {...props}
-                className={'dims_class_info'}
-            >
-                {card_states['class_info'].component(props)}
-            </AppCard>
-        }
-    },
-    alignment_info : {
-        component : ( props ) => {
-            return <AlignmentInfo
-                {...props}
-            />
-        },
-        card : ( props ) => {
-            return <AppCard
-                {...props}
-                className={'dims_alignment_info'}
-            >
-                {card_states['alignment_info'].component(props)}
-            </AppCard>
-        }
-    },
-    ability_info : {
-        component : ( props ) => {
-            return <AbilityInfo
-                {...props}
-            />
-        },
-        card : ( props ) => {
-            return <AppCard
-                {...props}
-                className={'dims_ability_info'}
-            >
-                {card_states['ability_info'].component(props)}
-            </AppCard>
-        }
-    },
-    roll_info : {
-        component : ( props ) => {
-            return <RollInfo
-                {...props}
-            />
-        },
-        card : ( props ) => {
-            return <AppCard
-                {...props}
-                className={'dims_roll_info'}
-            >
-                {card_states['roll_info'].component(props)}
-            </AppCard>
-        }
-    },
-    inventory : {
-        component : ( props ) => {
-            return <Inventory
-                {...props}
-            />
-        },
-        card : ( props ) => {
-            return <AppCard
-                {...props}
-                className={'dims_inventory'}
-            >
-                {card_states['inventory'].component(props)}
-            </AppCard>
-        }
-    },
-    notes : {
-        component : ( props ) => {
-            return <Notes
-                {...props}
-            />
-        },
-        card : ( props ) => {
-            return <AppCard
-                {...props}
-                className={'dims_notes'}
-            >
-                {card_states['notes'].component(props)}
-            </AppCard>
-        }
-    },
-    bkg_story : {
-        component : ( props ) => {
-            return <Background
-                {...props}
-            />
-        },
-        card : ( props ) => {
-            return <AppCard
-                {...props}
-                className={'dims_bkg'}
-            >
-                {card_states['bkg_story'].component(props)}
-            </AppCard>
-        }
-    },
-    spells : {
-        component : ( props ) => {
-            return <Spellbook
-                {...props}
-            />
-        },
-        card : ( props ) => {
-            return <AppCard
-                {...props}
-                className={'dims_spells'}
-            >
-                {card_states['spells'].component(props)}
-            </AppCard>
-        }
-    },
-    class_quest : {
-        component : ( props ) => {
-            return <ClassQuest
-                {...props}
-            />
-        },
-        card : ( props ) => {
-            return <AppCard
-                {...props}
-                className={'dims_class_quest'}
-            >
-                {card_states['class_quest'].component(props)}
-            </AppCard>
-        }
-    },
-}
-
-export const panel_states = {
-    hidden : {
-        component : ( props ) => {
-            return <Fragment />
-        },
-    },
-    loading : {
-        component : ( props ) => {
-            return <Loading />
-        },
-    },
-    enter : {
-        component : ( props ) => {
-            return <EnterForm
-                {...props}
-            />
-        },
-    },
-    new_player : {
-        component : ( props ) => {
-            return <CreatePlayer
-                {...props}
-            />
-        },
-    },
-    character : {
-        component : ( props ) => {
-            return <CharacterInfo
-                {...props}
-            />
-        },
-    }
-}
+{/*export const card_states = {*/}
+{/*    hidden : {*/}
+//         component : ( props ) => {
+//             return <Fragment />
+//         },
+//         card :
+//             ( props ) => {
+//                 return <AppCard
+//                     {...props}
+//                     showExitBtn={false}
+//                     className={'dims_hidden'}
+//                 >
+//                     {card_states['hidden'].component(props)}
+//                 </AppCard>
+//             }
+//     },
+//     loading : {
+//         component : ( props ) => {
+//             return <Loading />
+//         },
+//         card : ( props ) => {
+//             return <AppCard
+//                 {...props}
+//                 showExitBtn={false}
+//                 className={'dims_loading'}
+//             >
+//                 {card_states['loading'].component(props)}
+//             </AppCard>
+//         }
+//     },
+//     race_info : {
+//         component : ( props ) => {
+{/*            return <RaceCard*/}
+{/*                {...props}*/}
+{/*            />*/}
+//         },
+//         card : ( props ) => {
+//             return <AppCard
+{/*                {...props}*/}
+{/*                className={'dims_race_info'}*/}
+{/*            >*/}
+{/*                {card_states['race_info'].component(props)}*/}
+{/*            </AppCard>*/}
+//         }
+//     },
+//     class_info : {
+//         component : ( props ) => {
+//             return <ClassCard
+//                 {...props}
+//             />
+//         },
+//         card : ( props ) => {
+//             return <AppCard
+//                 {...props}
+//                 className={'dims_class_info'}
+//             >
+//                 {card_states['class_info'].component(props)}
+//             </AppCard>
+//         }
+//     },
+//     alignment_info : {
+//         component : ( props ) => {
+//             return <AlignmentCard
+//                 {...props}
+//             />
+//         },
+//         card : ( props ) => {
+//             return <AppCard
+//                 {...props}
+//                 className={'dims_alignment_info'}
+//             >
+//                 {card_states['alignment_info'].component(props)}
+//             </AppCard>
+{/*        }*/}
+{/*    },*/}
+{/*    ability_info : {*/}
+//         component : ( props ) => {
+//             return <AbilityInfo
+{/*                {...props}*/}
+{/*            />*/}
+{/*        },*/}
+{/*        card : ( props ) => {*/}
+{/*            return <AppCard*/}
+//                 {...props}
+//                 className={'dims_ability_info'}
+//             >
+//                 {card_states['ability_info'].component(props)}
+//             </AppCard>
+//         }
+//     },
+//     roll_info : {
+//         component : ( props ) => {
+//             return <RollInfo
+//                 {...props}
+//             />
+//         },
+//         card : ( props ) => {
+//             return <AppCard
+//                 {...props}
+//                 className={'dims_roll_info'}
+//             >
+//                 {card_states['roll_info'].component(props)}
+//             </AppCard>
+//         }
+//     },
+//     inventory : {
+//         component : ( props ) => {
+//             return <Inventory
+//                 {...props}
+//             />
+//         },
+//         card : ( props ) => {
+{/*            return <AppCard*/}
+{/*                {...props}*/}
+//                 className={'dims_inventory'}
+//             >
+//                 {card_states['inventory'].component(props)}
+//             </AppCard>
+//         }
+//     },
+//     notes : {
+//         component : ( props ) => {
+//             return <Notes
+//                 {...props}
+//             />
+//         },
+//         card : ( props ) => {
+//             return <AppCard
+//                 {...props}
+//                 className={'dims_notes'}
+//             >
+//                 {card_states['notes'].component(props)}
+//             </AppCard>
+//         }
+//     },
+//     bkg_story : {
+//         component : ( props ) => {
+//             return <Background
+//                 {...props}
+//             />
+//         },
+//         card : ( props ) => {
+//             return <AppCard
+{/*                {...props}*/}
+{/*                className={'dims_bkg'}*/}
+//             >
+//                 {card_states['bkg_story'].component(props)}
+//             </AppCard>
+//         }
+//     },
+//     spells : {
+//         component : ( props ) => {
+//             return <Spellbook
+//                 {...props}
+//             />
+//         },
+//         card : ( props ) => {
+//             return <AppCard
+//                 {...props}
+//                 className={'dims_spells'}
+//             >
+//                 {card_states['spells'].component(props)}
+//             </AppCard>
+//         }
+//     },
+//     class_quest : {
+//         component : ( props ) => {
+//             return <ClassQuest
+//                 {...props}
+//             />
+//         },
+//         card : ( props ) => {
+//             return <AppCard
+//                 {...props}
+//                 className={'dims_class_quest'}
+//             >
+//                 {card_states['class_quest'].component(props)}
+//             </AppCard>
+//         }
+//     },
+// }
+//
+// export const panel_states = {
+//     hidden : {
+//         component : ( props ) => {
+//             return <Fragment />
+//         },
+//     },
+//     loading : {
+//         component : ( props ) => {
+//             return <Loading />
+//         },
+//     },
+//     enter : {
+//         component : ( props ) => {
+//             return <EnterForm
+//                 {...props}
+//             />
+//         },
+//     },
+//     new_player : {
+//         component : ( props ) => {
+//             return <CreatePlayer
+//                 {...props}
+//             />
+//         },
+//     },
+//     character : {
+//         component : ( props ) => {
+//             return <CharacterInfo
+//                 {...props}
+//             />
+//         },
+//     }
+// }
 
 export const skills = [
     // 0

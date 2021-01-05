@@ -2,9 +2,10 @@ import React  from 'react';
 import { alignments } from "../../Utils/Data";
 import { Gem } from "../Gem";
 
-export function AlignmentInfo( { card_data } ) {
-    const { name, description } = alignments[card_data.item_id]
-    return <div className={'alignment_info'}>
+export function AlignmentCard( { alignment_data, openCallback, opened } ) {
+    const { name, description } = alignment_data
+    
+    return <div className={'alignment-card ' + (opened ? '' : 'closed')} onClick={openCallback}>
         <h1>{name}</h1>
         
         <div className={'info-section'}>

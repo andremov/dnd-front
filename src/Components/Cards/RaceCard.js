@@ -5,7 +5,7 @@ import { Gem } from "../Gem";
 export function RaceCard( { race_data, openCallback, opened } ) {
     const { name, ability_bonus, skill_bonus, age, height, trait_name } = race_data
     
-    return <div className={'race_info ' + (opened ? 'opened' : 'closed')} onClick={openCallback}>
+    return <div className={'race-card ' + (opened ? '' : 'closed')} onClick={openCallback}>
         <h1>{name}</h1>
         
         <div className={'trait-section'}>
