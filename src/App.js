@@ -1,8 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { card_states, panel_states } from "./Utils/Data";
-import { Header } from "./Components/Header";
 import { Panel } from "./Components/Panel";
-import { fetchInventory, fetchSpells, findCharacter } from "./Services/api";
 
 export class App extends Component {
     
