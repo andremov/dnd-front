@@ -38,3 +38,9 @@ export function createNote( data ) {
         return r.data;
     })
 }
+
+export function modifyNote(id, data) {
+    return API.patch('/notes/'+id, data).then(r => {
+        return r.data;
+    })
+}

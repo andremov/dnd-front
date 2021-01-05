@@ -6,19 +6,19 @@ import { Loading } from "../Loading";
 export function Notebook( { player_id, player_notes } ) {
     return (
         <Fragment>
+            <NewNoteCard player_id={player_id} />
             {
                 player_notes.map(( item, i ) => {
                     return <NoteCard key={i} data={item} />
                 })
             }
-            <NewNoteCard player_id={player_id} />
         </Fragment>
     );
 }
 
 function NewNoteCard( { player_id } ) {
     const [ title, setTitle ] = useState('');
-    const [progress, setProgress] = useState(false);
+    const [ progress, setProgress ] = useState(false);
     
     function sendCreateNote() {
         setProgress(true)
