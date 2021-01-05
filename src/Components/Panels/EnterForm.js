@@ -12,7 +12,7 @@ export function EnterForm( { setPlayerData } ) {
     
     function requestPlayer() {
         findCharacter(codename).then(r => {
-            setPlayerData(r)
+            setPlayerData(r._id)
         })
     }
     

@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { modifyCharacter } from "../../Services/api";
 import { validCharacter } from "../../Utils/Functions";
 
 export function Notebook( { player_data } ) {
@@ -14,9 +13,7 @@ export function Notebook( { player_data } ) {
     }
     
     function sendNotes() {
-        modifyCharacter(player_data._id, {notes}).then(r => {
-            setHasChanges(false)
-        })
+    
     }
     
     return (

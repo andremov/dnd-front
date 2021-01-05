@@ -22,25 +22,13 @@ export function sendCharacter( object ) {
 
 export function findCharacter( codename ) {
     return API.get('/players/find', { params : { codename } }).then(r => {
-        r.data.stats = JSON.parse(r.data.stats)
         return r.data;
     })
 }
 
-export function fetchInventory( id ) {
-    return API.get('/items/find', { params : { id } }).then(r => {
-        return r.data;
-    })
-}
-
-export function fetchSpells( id ) {
-    return API.get('/spells/find', { params : { id } }).then(r => {
-        return r.data;
-    })
-}
-
-export function modifyCharacter(player_id, changes) {
-    return API.patch('/players/'+player_id, changes).then(r => {
+export function getAllPlayerData( id ) {
+    return API.get('/players/all-data/'+id).then(r => {
+        r.data.player_data.stats = JSON.parse(r.data.player_data.stats)
         return r.data;
     })
 }
