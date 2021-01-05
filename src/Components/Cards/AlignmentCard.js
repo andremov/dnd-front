@@ -1,8 +1,13 @@
-import React  from 'react';
-import { alignments } from "../../Utils/Data";
+import React, { useState } from 'react';
 import { Gem } from "../Gem";
 
-export function AlignmentCard( { alignment_data, openCallback, opened } ) {
+export function AlignmentCard( { alignment_data } ) {
+    const [opened, setOpen] = useState(false);
+    
+    function openCallback() {
+        setOpen(!opened)
+    }
+    
     const { name, description } = alignment_data
     
     return <div className={'alignment-card ' + (opened ? '' : 'closed')} onClick={openCallback}>

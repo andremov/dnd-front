@@ -1,8 +1,14 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import { abilities, skills } from "../../Utils/Data";
 import { Gem } from "../Gem";
 
-export function RaceCard( { race_data, openCallback, opened } ) {
+export function RaceCard( { race_data } ) {
+    const [opened, setOpen] = useState(false);
+    
+    function openCallback() {
+        setOpen(!opened)
+    }
+    
     const { name, ability_bonus, skill_bonus, age, height, trait_name } = race_data
     
     return <div className={'race-card ' + (opened ? '' : 'closed')} onClick={openCallback}>

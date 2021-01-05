@@ -1,8 +1,13 @@
-import React from 'react';
-import { abilities } from "../../Utils/Data";
+import React, { useState } from 'react';
 import { Gem } from "../Gem";
 
-export function AbilityCard( { ability_data, openCallback, opened } ) {
+export function AbilityCard( { ability_data } ) {
+    const [opened, setOpen] = useState(false);
+    
+    function openCallback() {
+        setOpen(!opened)
+    }
+    
     const { name, description } = ability_data
     
     return <div className={'ability_info ' + (opened ? '' : 'closed')} onClick={openCallback}>

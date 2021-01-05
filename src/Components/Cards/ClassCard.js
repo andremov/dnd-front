@@ -1,8 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { alignments } from "../../Utils/Data";
 import { Gem } from "../Gem";
 
-export function ClassCard( { class_data, openCallback, opened } ) {
+export function ClassCard( { class_data } ) {
+    const [opened, setOpen] = useState(false);
+    
+    function openCallback() {
+        setOpen(!opened)
+    }
+    
     const { name, hit_dice, armor, weapons, alignment } = class_data;
     
     return <div className={'class-card ' + (opened ? '' : 'closed')} onClick={openCallback}>
