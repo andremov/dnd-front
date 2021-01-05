@@ -1,20 +1,21 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 
 export function Inventory( { player_inventory } ) {
     return (
-        <div className={'inventory'}>
-            <h1>Inventory</h1>
-            <div>
-                {player_inventory.map(( item, i ) => {
+        <Fragment>
+            {player_inventory.length === 0 ?
+                <Item
+                    data={{name : 'Nothing', quantity: 0, data: ''}}
+                />
+                : player_inventory.map(( item, i ) => {
                     return <Item key={i} data={item} />
                 })}
-            </div>
-        </div>
+        </Fragment>
     );
 }
 
 function Item( { data } ) {
-    return <div className={'item'}>
+    return <div className={'inventory-item'}>
         <div>
             <div>{data.name}</div>
             <div>x{data.quantity}</div>

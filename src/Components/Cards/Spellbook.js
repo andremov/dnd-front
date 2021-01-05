@@ -1,21 +1,22 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 
 export function Spellbook( { player_spells } ) {
     return (
-        <div className={'inventory'}>
-            <h1>Spellbook</h1>
-            <div>
-                {player_spells.map(( item, i ) => {
-                    return <Spell key={i} data={item} />
-                })}
-            </div>
-        </div>
+        <Fragment>
+            {player_spells.length === 0 ?
+                <Spell
+                    data={{name : 'Nothing', quantity: 0, data: ''}}
+                />
+                : player_spells.map(( item, i ) => {
+                return <Spell key={i} data={item} />
+            })}
+        </Fragment>
     );
 }
 
 
 function Spell( { data } ) {
-    return <div className={'item'}>
+    return <div className={'spell-item'}>
         <div>
             <div>{data.name}</div>
             <div>x{data.quantity}</div>

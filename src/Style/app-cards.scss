@@ -1,6 +1,31 @@
 @import "variables";
 
-.app-card-contents {
+
+.spell-item, .inventory-item {
+  display: flex;
+  flex-direction: column;
+  height: 80px;
+  min-height: 80px;
+  border-radius: 10px;
+  border: 1px solid;
+  overflow: hidden;
+  margin-bottom: 5px;
+  width: 100%;
+
+  > div {
+    padding: 7px;
+    box-sizing: border-box;
+  }
+
+  > :first-child {
+    display: flex;
+    justify-content: space-between;
+    background-color: #476b85;
+    color: white;
+  }
+}
+
+.item-card {
   cursor: pointer;
   display: flex;
   flex-direction: column;
@@ -44,6 +69,7 @@
     bottom: 0;
     right: 10px;
   }
+
 }
 
 .new-player {
@@ -54,10 +80,10 @@
 }
 
 .race-card {
-  @extend .app-card-contents;
+  @extend .item-card;
 
-    height: 300px;
-    min-height: 300px;
+  height: 300px;
+  min-height: 300px;
 
   > .trait-section {
     border-top: 1px solid gray;
@@ -82,10 +108,10 @@
 }
 
 .class-card {
-  @extend .app-card-contents;
+  @extend .item-card;
 
-    min-height: 300px;
-    height: 300px;
+  min-height: 300px;
+  height: 300px;
 
   > .info-section {
     border-top: 1px solid gray;
@@ -106,7 +132,7 @@
 }
 
 .alignment-card {
-  @extend .app-card-contents;
+  @extend .item-card;
   height: 220px;
   min-height: 220px;
 }
@@ -147,16 +173,10 @@
   }
 }
 
-.dims_ability_info {
-  width: 300px;
-  height: 250px;
-  min-width: 300px;
-  min-height: 250px;
-}
-
 .ability_info {
-  @extend .app-card-contents;
-  @extend .dims_ability_info;
+  @extend .item-card;
+  height: 200px;
+  min-height: 200px;
 }
 
 .char-info {
@@ -192,7 +212,7 @@
 }
 
 .roll_info {
-  @extend .app-card-contents;
+  @extend .item-card;
   @extend .dims_roll_info;
 
   > .roll-guide {
@@ -227,7 +247,7 @@
 }
 
 .notes {
-  @extend .app-card-contents;
+  @extend .item-card;
   @extend .dims_notes;
 
   > textarea {
@@ -243,46 +263,13 @@
   }
 }
 
-.dims_inventory {
-  width: 400px;
-  height: 600px;
-  min-width: 400px;
-  min-height: 600px;
-}
+.inventory, .spellbook {
+  @extend .item-card;
 
-.inventory {
-  @extend .app-card-contents;
-  @extend .dims_inventory;
+  cursor: default;
+  height: 100%;
 
-  > div {
-    display: flex;
-    flex-direction: column;
-    overflow-y: scroll;
-    height: 100%;
 
-    > .item {
-      display: flex;
-      flex-direction: column;
-      height: 80px;
-      min-height: 80px;
-      border-radius: 10px;
-      border: 1px solid;
-      overflow: hidden;
-      margin-bottom: 5px;
-
-      > div {
-        padding: 7px;
-        box-sizing: border-box;
-      }
-
-      > :first-child {
-        display: flex;
-        justify-content: space-between;
-        background-color: #476b85;
-        color: white;
-      }
-    }
-  }
 }
 
 .dims_bkg {
@@ -293,19 +280,9 @@
 }
 
 .background {
-  @extend .app-card-contents;
+  @extend .item-card;
   @extend .dims_bkg;
 
-}
-
-.dims_spells {
-  @extend .dims_inventory;
-}
-
-.spells {
-  @extend .app-card-contents;
-  @extend .dims_spells;
-  @extend .inventory;
 }
 
 .dims_class_quest {
@@ -316,7 +293,7 @@
 }
 
 .class_quest {
-  @extend .app-card-contents;
+  @extend .item-card;
   @extend .dims_class_quest;
 }
 

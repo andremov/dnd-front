@@ -164,12 +164,14 @@ export class App extends Component {
     }
     
     render() {
-        const { player_data, panel_data, cards_data, player_inventory, player_spells } = this.state;
+        const { player_data, player_inventory, player_spells } = this.state;
+        
         return <Fragment>
-            <Panel />
-            <Panel />
-            <Panel />
+            <Panel player_data={player_data} player_inventory={player_inventory} player_spells={player_spells} />
+            <Panel player_data={player_data} player_inventory={player_inventory} player_spells={player_spells} />
+            <Panel player_data={player_data} player_inventory={player_inventory} player_spells={player_spells} />
         </Fragment>
+        
     /*
         return (
             <Fragment>
