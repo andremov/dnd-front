@@ -17,6 +17,7 @@ export class App extends Component {
         this.setState({
             player_id
         })
+        this.updatePlayerData();
         setInterval(this.updatePlayerData, 5000)
     }
     
@@ -27,7 +28,7 @@ export class App extends Component {
     }
     
     render() {
-        const { player_id, player_data, player_items, player_spells } = this.state;
+        const { player_id, player_data, player_items, player_spells, player_notes, player_quests } = this.state;
         
         return <Fragment>
             <Panel
@@ -36,6 +37,8 @@ export class App extends Component {
                 player_data={player_data}
                 player_inventory={player_items}
                 player_spells={player_spells}
+                player_notes={player_notes}
+                player_quests={player_quests}
                 setPlayerData={this.setPlayerID}
             />
             <Panel
@@ -44,6 +47,8 @@ export class App extends Component {
                 player_data={player_data}
                 player_inventory={player_items}
                 player_spells={player_spells}
+                player_notes={player_notes}
+                player_quests={player_quests}
                 setPlayerData={this.setPlayerID}
             />
             <Panel
@@ -52,6 +57,8 @@ export class App extends Component {
                 player_data={player_data}
                 player_inventory={player_items}
                 player_spells={player_spells}
+                player_notes={player_notes}
+                player_quests={player_quests}
                 setPlayerData={this.setPlayerID}
             />
         </Fragment>

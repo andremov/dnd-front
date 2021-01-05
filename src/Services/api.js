@@ -12,7 +12,7 @@ export function sendCharacter( object ) {
     return API.post('/players/', {
         ...object,
         stats : JSON.stringify(object.stats),
-        level: 1,
+        level : 1,
         hit_points : classes[object.char_class].hit_dice,
         max_hit_points : classes[object.char_class].hit_dice
     }).then(r => {
@@ -27,8 +27,14 @@ export function findCharacter( codename ) {
 }
 
 export function getAllPlayerData( id ) {
-    return API.get('/players/all-data/'+id).then(r => {
+    return API.get('/players/all-data/' + id).then(r => {
         r.data.player_data.stats = JSON.parse(r.data.player_data.stats)
+        return r.data;
+    })
+}
+
+export function createNote( data ) {
+    return API.post('/notes/', data).then(r => {
         return r.data;
     })
 }

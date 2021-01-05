@@ -3,7 +3,7 @@ import { findCharacter } from "../../Services/api";
 import { CreatePlayer } from "./CreatePlayer";
 
 export function EnterForm( { setPlayerData } ) {
-    const [ codename, setCodename ] = useState('');
+    const [ codename, setCodename ] = useState('test_new_ui');
     const [ creatingPlayer, setCreatingPlayer ] = useState(false)
     
     if ( creatingPlayer ) {

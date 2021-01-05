@@ -52,7 +52,7 @@
 .spell-item, .inventory-item {
   display: flex;
   flex-direction: column;
-  height: 80px;
+  //height: 80px;
   min-height: 80px;
   border-radius: 10px;
   border: 1px solid;
@@ -68,7 +68,7 @@
   > :first-child {
     display: flex;
     justify-content: space-between;
-    background-color: #476b85;
+    background-color: $main-color-dark;
     color: white;
   }
 }
@@ -131,32 +131,9 @@
   min-height: 220px;
 }
 
-
-
-.new-player {
-  width: 100%;
-  height: 500px;
-  padding-left: 10px;
-  padding-right: 10px;
-}
-
-
-
-
-
-
-
-.ability_info {
-  @extend .item-card;
-  height: 200px;
-  min-height: 200px;
-}
-
 .char-info {
   width: 100%;
   height: 100%;
-  padding: 20px;
-  box-sizing: border-box;
 
   h2 {
     margin-top: 20px;
@@ -175,6 +152,50 @@
     display: flex;
     justify-content: space-evenly;
   }
+}
+
+.note-card {
+  @extend .item-card;
+
+  height: 300px;
+  min-height: 300px;
+
+  > .trait-section {
+    border-top: 1px solid gray;
+    border-bottom: 1px solid gray;
+    display: flex;
+    flex-direction: column;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+    > h2 {
+      text-align: center;
+      font-weight: normal;
+    }
+  }
+
+  > .info-section {
+    display: flex;
+    flex-direction: column;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+}
+
+.new-note-card {
+  width: 100%;
+  padding: 5px;
+  box-sizing: border-box;
+  display: flex;
+  border-radius: 5px;
+  background-color: $main-color-dark;
+}
+
+
+.ability_info {
+  @extend .item-card;
+  height: 200px;
+  min-height: 200px;
 }
 
 .dims_roll_info {

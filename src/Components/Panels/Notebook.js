@@ -1,35 +1,45 @@
-import React, { useState } from 'react';
-import { validCharacter } from "../../Utils/Functions";
+import React, { Fragment, useState } from 'react';
+import { NoteCard } from "../Cards/NoteCard";
+import { createNote } from "../../Services/api";
+import { Loading } from "../Loading";
 
-export function Notebook( { player_data } ) {
-    const [ notes, setNotes ] = useState(player_data?.notes)
-    const [hasChanges, setHasChanges] = useState(false)
-    
-    function handleChange(value) {
-        if (validCharacter(value)) {
-            setNotes(value)
-            setHasChanges(true)
-        }
-    }
-    
-    function sendNotes() {
-    
-    }
-    
+export function Notebook( { player_id, player_notes } ) {
     return (
-        <div className={'notes'}>
-            <textarea
-                onChange={( e ) => handleChange(e.target.value)}
-                value={notes}
-                placeholder={'Notes'}
-            />
-            <button
-                disabled={!hasChanges}
-                children={'Save'}
-                onClick={sendNotes}
-                className={'primary'}
-            />
-        </div>
+        <Fragment>
+            {
+                player_notes.map(( item, i ) => {
+                    return <NoteCard key={i} data={item} />
+                })
+            }
+            <NewNoteCard player_id={player_id} />
+        </Fragment>
     );
 }
 
+function NewNoteCard( { player_id } ) {
+    const [ title, setTitle ] = useState('');
+    const [progress, setProgress] = useState(false);
+    
+    function sendCreateNote() {
+        setProgress(true)
+        createNote({ owner : player_id, name : title, data : '' }).then(r => {
+            console.log(r.message)
+            setTitle('')
+            setProgress(false)
+        })
+    }
+    
+    return <div className={'new-note-card'}>
+        <input
+            placeholder={'Title'}
+            value={title}
+            onChange={e => setTitle(e.target.value)}
+        />
+        <button
+            children={progress? <Loading /> : 'Create'}
+            disabled={title.length === 0 || progress}
+            className={'secondary'}
+            onClick={sendCreateNote}
+        />
+    </div>
+}

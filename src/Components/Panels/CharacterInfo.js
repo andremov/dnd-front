@@ -2,6 +2,7 @@ import React from 'react';
 import { abilities, alignments, classes, races } from "../../Utils/Data";
 import { Gem } from "../Gem";
 import { EnterForm } from "./EnterForm";
+import { Loading } from "../Loading";
 
 export function CharacterInfo( { player_id, player_data, setPlayerData } ) {
     
@@ -10,7 +11,7 @@ export function CharacterInfo( { player_id, player_data, setPlayerData } ) {
     }
     
     if (!player_data) {
-        return <> </>
+        return <Loading />
     }
     
     return (

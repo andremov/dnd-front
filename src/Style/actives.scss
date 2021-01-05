@@ -24,7 +24,8 @@ button {
   }
 
   &.primary {
-    background: linear-gradient(30deg, $main-color-light, $main-color-dark);
+    background: linear-gradient(30deg, $main-color-light, $main-color-dark) 5% 20%;
+    background-size: 120% 120%;
     color: white;
   }
 
