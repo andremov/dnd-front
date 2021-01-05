@@ -3,7 +3,7 @@ import { textHeight } from "../../Utils/Functions";
 
 export function SpellCard( { data } ) {
     return <div
-        className={'spell-item'}
+        className={'spell-card'}
         style={{ '--itemDataHeight' : textHeight(data.data) + 'px' }}
     >
         <div>

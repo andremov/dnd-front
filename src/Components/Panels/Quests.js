@@ -1,11 +1,15 @@
-import React from 'react';
-import { classes } from "../../Utils/Data";
+import React, { Fragment } from 'react';
+import { QuestCard } from "../Cards/QuestCard";
 
-export function Quests( { player_data } ) {
+export function Quests( { player_quests } ) {
     return (
-        <div className={'class_quest'}>
-            {classes[player_data.char_class].quest}
-        </div>
+        <Fragment>
+            {
+                player_quests.map(( item, i ) => {
+                    return <QuestCard key={i} data={item} />
+                })
+            }
+        </Fragment>
     );
 }
 

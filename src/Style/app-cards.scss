@@ -48,7 +48,7 @@
 
 }
 
-.spell-item, .inventory-item, .trade-item-card {
+.spell-card, .inventory-item-card, .trade-item-card {
   display: flex;
   flex-direction: column;
   min-height: calc(var(--itemDataHeight) + 35px);
@@ -195,17 +195,24 @@
   min-height: 200px;
 }
 
-
-.dims_class_quest {
-  width: 400px;
-  height: 250px;
-  min-width: 400px;
-  min-height: 250px;
-}
-
-.class_quest {
+.quest-card {
   @extend .item-card;
-  @extend .dims_class_quest;
+  min-height: calc(var(--textAreaHeight) + 160px);
+  height: calc(var(--textAreaHeight) + 160px);
+
+  h1 {
+    width: 100%;
+    font-weight: normal;
+    text-align: left;
+  }
+  h2 {
+    margin-bottom: 10px;
+  }
+  > div {
+    min-height: calc(var(--itemDataHeight));
+    height: calc(var(--itemDataHeight));
+    white-space: pre-wrap;
+    font-size: 16px;
+    font-family: monospace;
+  }
 }
-
-

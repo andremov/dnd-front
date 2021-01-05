@@ -10,6 +10,7 @@ import { AbilitiesInfo } from "../Components/Panels/AbilitiesInfo";
 import { Notebook } from "../Components/Panels/Notebook";
 import { RollInfo } from "../Components/Panels/RollInfo";
 import { TradeItems } from "../Components/Panels/TradeItems";
+import { Quests } from "../Components/Panels/Quests";
 
 export const skills = [
     // 0
@@ -641,7 +642,7 @@ const panels = [
     {
         id : 10,
         name : 'Player - Quests',
-        panel : ( props ) => <Notebook {...props} />
+        panel : ( props ) => <Quests {...props} />
     },
     {
         id : 11,

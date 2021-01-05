@@ -3,7 +3,7 @@ import { textHeight } from "../../Utils/Functions";
 
 export function ItemCard( { data } ) {
     return <div
-        className={'inventory-item'}
+        className={'inventory-item-card'}
         style={{ '--itemDataHeight' : textHeight(data.data) + 'px' }}
     >
         <div>
