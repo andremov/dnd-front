@@ -36,9 +36,9 @@ export class App extends Component {
         const { player_data, player_inventory, player_spells } = this.state;
         
         return <Fragment>
-            <Panel player_data={player_data} player_inventory={player_inventory} player_spells={player_spells} />
-            <Panel player_data={player_data} player_inventory={player_inventory} player_spells={player_spells} />
-            <Panel player_data={player_data} player_inventory={player_inventory} player_spells={player_spells} />
+            <Panel id={1} player_data={player_data} player_inventory={player_inventory} player_spells={player_spells} />
+            <Panel id={2} player_data={player_data} player_inventory={player_inventory} player_spells={player_spells} />
+            <Panel id={3} player_data={player_data} player_inventory={player_inventory} player_spells={player_spells} />
         </Fragment>
         
     }

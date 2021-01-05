@@ -51,17 +51,25 @@ h1, h2 {
 }
 
 form {
-  height: 100%;
+
+  &.enter-form {
+    height: 300px;
+    width: 50%;
+  }
+
   width: 100%;
+  //height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
+  margin: auto;
 
   > .color-bar {
     height: 10px;
-    width: 150%;
-    margin-top: 10px;
+    width: calc(100% + 40px);
+    margin-top: 30px;
+    margin-bottom: 30px;
     background: linear-gradient(30deg, $main-color, $main-color-dark);
   }
 
@@ -72,8 +80,47 @@ form {
     align-items: center;
     overflow: hidden;
     transition: 0.3s;
-    height: 100%;
     width: 100%;
+
+    > h1 {
+      margin-bottom: 15px;
+    }
+
+    > .ability-roll {
+      margin-bottom: 20px;
+
+      > .rolls-display {
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        font-size: 1.5em;
+        margin-bottom: 10px;
+      }
+    }
+
+    > .ability-entry {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      > span {
+        font-size: 1.4em;
+      }
+    }
+
+    > .ability-list {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+    }
+
+    > textarea {
+      width: 90%;
+      height: 300px;
+      resize: none;
+    }
 
     &.hidden {
       height: 0;

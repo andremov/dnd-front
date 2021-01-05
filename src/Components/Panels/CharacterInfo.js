@@ -1,11 +1,12 @@
 import React from 'react';
 import { abilities, alignments, classes, races } from "../../Utils/Data";
 import { Gem } from "../Gem";
+import { EnterForm } from "./EnterForm";
 
 export function CharacterInfo( { player_data } ) {
     
     if (!player_data) {
-        return <> </>
+        return <EnterForm />
     }
     
     return (

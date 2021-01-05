@@ -1,4 +1,4 @@
-import React  from "react";
+import React from "react";
 import { CharacterInfo } from "../Components/Panels/CharacterInfo";
 import { Inventory } from "../Components/Panels/Inventory";
 import { Background } from "../Components/Panels/Background";
@@ -585,60 +585,76 @@ export const classes = [
 
 ]
 
-export const panels = [
+const panels = [
     {
         id : 3,
         name : 'Player - Character',
-        panel : (props) => <CharacterInfo {...props} />
+        panel : ( props ) => <CharacterInfo {...props} />
     },
     {
         id : 0,
         name : 'Wiki - Races',
-        panel : (props) => <RacesInfo {...props} />
+        panel : ( props ) => <RacesInfo {...props} />
     },
     {
         id : 1,
         name : 'Wiki - Classes',
-        panel : (props) => <ClassesInfo {...props} />
+        panel : ( props ) => <ClassesInfo {...props} />
     },
     {
         id : 2,
         name : 'Wiki - Alignments',
-        panel : (props) => <AlignmentsInfo {...props} />
+        panel : ( props ) => <AlignmentsInfo {...props} />
     },
     {
         id : 4,
         name : 'Player - Inventory',
-        panel : (props) => <Inventory {...props} />
+        panel : ( props ) => <Inventory {...props} />
     },
     {
         id : 5,
         name : 'Player - Spellbook',
-        panel : (props) => <Spellbook {...props} />
+        panel : ( props ) => <Spellbook {...props} />
     },
     {
         id : 6,
         name : 'Wiki - Abilities',
-        panel : (props) => <AbilitiesInfo {...props} />
+        panel : ( props ) => <AbilitiesInfo {...props} />
     },
     {
         id : 7,
         name : 'Wiki - Ability Checks',
-        panel : (props) => <AbilitiesInfo {...props} />
+        panel : ( props ) => <AbilitiesInfo {...props} />
     },
     {
         id : 8,
         name : 'Player - Background',
-        panel : (props) => <Background {...props} />
+        panel : ( props ) => <Background {...props} />
     },
     {
         id : 9,
         name : 'Player - Notebook',
-        panel : (props) => <Notebook {...props} />
+        panel : ( props ) => <Notebook {...props} />
     },
     {
         id : 9,
         name : 'Player - Quests',
-        panel : (props) => <Notebook {...props} />
+        panel : ( props ) => <Notebook {...props} />
     },
 ]
+
+export function getPanels( parent_id, playerExists ) {
+    if ( playerExists ) {
+        return panels
+    }
+    
+    if ( parent_id === 1 ) {
+        return panels.filter(item => item.id === 3)
+    }
+    
+    return panels.filter(item => item.name.includes('Wiki'))
+}
+
+export function getPanel( panel_id, props ) {
+    return panels.filter(item => item.id === panel_id)[0]?.panel(props)
+}

@@ -146,42 +146,6 @@
 
 
 
-.enter-form > .section {
-  > .ability-roll {
-    > .rolls-display {
-      display: flex;
-      align-items: center;
-      justify-content: space-evenly;
-      font-size: 1.5em;
-      margin-bottom: 10px;
-    }
-  }
-
-  > .ability-entry {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    > span {
-      font-size: 1.4em;
-    }
-  }
-
-  > .ability-list {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-  }
-
-  > textarea {
-    width: 90%;
-    height: 300px;
-    resize: none;
-  }
-}
-
 .ability_info {
   @extend .item-card;
   height: 200px;
