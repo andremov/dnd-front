@@ -165,22 +165,27 @@ export class App extends Component {
     
     render() {
         const { player_data, panel_data, cards_data, player_inventory, player_spells } = this.state;
-        
+        return <Fragment>
+            <Panel />
+            <Panel />
+            <Panel />
+        </Fragment>
+    /*
         return (
             <Fragment>
                 <Header
                     callback={this.handleCard}
                     showTools={!!player_data}
-                    resetUI={() => this.setState({cards_data : []})}
+                    resetUI={() => this.setState({ cards_data : [] })}
                 />
-                
+            
                 <Panel type={''}>
                     {panel_states[panel_data.name].component(
                         {
                             card_data : panel_data,
                             player_data : player_data,
                             eventCallback : this.handlePanel,
-                            setPlayerData : (data) => {
+                            setPlayerData : ( data ) => {
                                 this.setState({
                                     player_data : data
                                 })
@@ -189,11 +194,11 @@ export class App extends Component {
                         }
                     )}
                 </Panel>
-                
+            
                 <div className={'card-holder-panel'}>
                     <div className={'board'}>
                         {cards_data.map(( item, i ) => {
-                            
+                        
                             return <Fragment key={i}>
                                 {card_states[item.card_name].card(
                                     {
@@ -204,12 +209,12 @@ export class App extends Component {
                                     }
                                 )}
                             </Fragment>
-                            
+                        
                         })}
                     </div>
                 </div>
             </Fragment>
-        );
+        );*/
     }
 }
 

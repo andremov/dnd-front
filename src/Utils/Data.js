@@ -1,11 +1,10 @@
 import React, { Fragment } from "react";
 import { AlignmentInfo } from "../Components/Cards/AlignmentInfo";
-import { ClassInfo } from "../Components/Cards/ClassInfo";
-import { RaceInfo } from "../Components/Cards/RaceInfo";
+import { ClassCard } from "../Components/Cards/ClassCard";
+import { RaceCard } from "../Components/Cards/RaceCard";
 import { CreatePlayer } from "../Components/Panels/CreatePlayer";
 import { EnterForm } from "../Components/Panels/EnterForm";
 import { Loading } from "../Components/Loading";
-import { ExitButton } from "../Components/ExitButton";
 import { AppCard } from "../Components/AppCard";
 import { AbilityInfo } from "../Components/Cards/AbilityInfo";
 import { CharacterInfo } from "../Components/Panels/CharacterInfo";
@@ -15,6 +14,9 @@ import { Inventory } from "../Components/Cards/Inventory";
 import { Background } from "../Components/Cards/Background";
 import { Spellbook } from "../Components/Cards/Spellbook";
 import { ClassQuest } from "../Components/Cards/ClassQuest";
+import { ClassesInfo } from "../Components/Panels/ClassesInfo";
+import { RacesInfo } from "../Components/Panels/RacesInfo";
+import { AlignmentsInfo } from "../Components/Panels/AlignmentsInfo";
 
 export const card_states = {
     hidden : {
@@ -48,7 +50,7 @@ export const card_states = {
     },
     race_info : {
         component : ( props ) => {
-            return <RaceInfo
+            return <RaceCard
                 {...props}
             />
         },
@@ -63,7 +65,7 @@ export const card_states = {
     },
     class_info : {
         component : ( props ) => {
-            return <ClassInfo
+            return <ClassCard
                 {...props}
             />
         },
@@ -234,35 +236,35 @@ export const panel_states = {
 
 export const skills = [
     // 0
-    {name: 'Athletics', id: 0},
-    {name: 'Acrobatics', id: 1},
-    {name: 'Stealth', id: 2},
-    {name: 'Sleight of Hand', id: 3},
-    {name: 'Arcana', id: 4},
+    { name : 'Athletics', id : 0 },
+    { name : 'Acrobatics', id : 1 },
+    { name : 'Stealth', id : 2 },
+    { name : 'Sleight of Hand', id : 3 },
+    { name : 'Arcana', id : 4 },
     
     // 5
-    {name: 'History', id: 5},
-    {name: 'Research', id: 6},
-    {name: 'Nature', id: 7},
-    {name: 'Religion', id: 8},
-    {name: 'Animal Handling', id: 9},
+    { name : 'History', id : 5 },
+    { name : 'Research', id : 6 },
+    { name : 'Nature', id : 7 },
+    { name : 'Religion', id : 8 },
+    { name : 'Animal Handling', id : 9 },
     
     // 10
-    {name: 'Perception', id: 10},
-    {name: 'Insight', id: 11},
-    {name: 'Medicine', id: 12},
-    {name: 'Survival Skills', id: 13},
-    {name: 'Deceit', id: 14},
+    { name : 'Perception', id : 10 },
+    { name : 'Insight', id : 11 },
+    { name : 'Medicine', id : 12 },
+    { name : 'Survival Skills', id : 13 },
+    { name : 'Deceit', id : 14 },
     
     // 15
-    {name: 'Intimidation', id: 15},
-    {name: 'Performance', id: 16},
-    {name: 'Persuasion', id: 17},
-    {name: 'Toughness', id: 18},
-    {name: 'Lung Capacity', id: 19},
+    { name : 'Intimidation', id : 15 },
+    { name : 'Performance', id : 16 },
+    { name : 'Persuasion', id : 17 },
+    { name : 'Toughness', id : 18 },
+    { name : 'Lung Capacity', id : 19 },
     
     // 20
-    {name: 'Poison Resistance', id: 20},
+    { name : 'Poison Resistance', id : 20 },
 ]
 
 export const abilities = [
@@ -805,5 +807,33 @@ export const classes = [
         },
         quest : 'Evangelize the village goblins into the light, by convincing them.'
     },
-    
+
+]
+
+export const panels = [
+    {
+        id : 3,
+        name : 'Character',
+        panel : (props) => <CharacterInfo {...props} />
+    },
+    {
+        id : 0,
+        name : 'Races',
+        panel : (props) => <RacesInfo {...props} />
+    },
+    {
+        id : 1,
+        name : 'Classes',
+        panel : (props) => <ClassesInfo {...props} />
+    },
+    {
+        id : 2,
+        name : 'Alignments',
+        panel : (props) => <AlignmentsInfo {...props} />
+    },
+    // {
+    //     id : 4,
+    //     name : 'Alignments',
+    //     panel : (props) => <CharacterInfo {...props} />
+    // },
 ]

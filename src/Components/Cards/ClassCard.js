@@ -1,10 +1,11 @@
-import React  from "react";
-import { alignments, classes } from "../../Utils/Data";
+import React from "react";
+import { alignments } from "../../Utils/Data";
 import { Gem } from "../Gem";
 
-export function ClassInfo( { card_data } ) {
-    const { name, hit_dice, armor, weapons, alignment } = classes[card_data.item_id]
-    return <div className={'class_info'}>
+export function ClassCard( { class_data, openCallback, opened } ) {
+    const { name, hit_dice, armor, weapons, alignment } = class_data;
+    
+    return <div className={'class-card ' + (opened ? 'opened' : 'closed')} onClick={openCallback}>
         <h1>{name}</h1>
         
         <div className={'info-section'}>
@@ -21,7 +22,7 @@ export function ClassInfo( { card_data } ) {
                 </span>
                 {hit_dice}
             </div>
-    
+            
             <div>
                 <span style={{ fontWeight : 'bold' }}>
                     Base Alignment:{' '}
@@ -40,8 +41,8 @@ export function ClassInfo( { card_data } ) {
             <span className={armor.heavy ? 'valid' : 'invalid'}> Heavy, </span>
             <span className={armor.shield ? 'valid' : 'invalid'}> Shield. </span>
         </div>
-    
-    
+        
+        
         <div className={'equip-section'}>
             <span style={{ fontWeight : 'bold' }}>
                 Weapons:{' '}
@@ -51,7 +52,7 @@ export function ClassInfo( { card_data } ) {
             <span className={weapons.martial.melee ? 'valid' : 'invalid'}> Martial Melee, </span>
             <span className={weapons.martial.ranged ? 'valid' : 'invalid'}> Martial Ranged. </span>
         </div>
-    
+        
         <Gem
             color={'aqua'}
             text={'Class'}

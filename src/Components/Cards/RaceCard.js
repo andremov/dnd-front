@@ -1,10 +1,11 @@
 import React, { Fragment } from "react";
-import { abilities, races, skills } from "../../Utils/Data";
+import { abilities, skills } from "../../Utils/Data";
 import { Gem } from "../Gem";
 
-export function RaceInfo( { card_data } ) {
-    const { name, ability_bonus, skill_bonus, age, height, trait_name } = races[card_data.item_id]
-    return <div className={'race_info'}>
+export function RaceCard( { race_data, openCallback, opened } ) {
+    const { name, ability_bonus, skill_bonus, age, height, trait_name } = race_data
+    
+    return <div className={'race_info ' + (opened ? 'opened' : 'closed')} onClick={openCallback}>
         <h1>{name}</h1>
         
         <div className={'trait-section'}>

@@ -4,6 +4,10 @@ import { Gem } from "../Gem";
 
 export function CharacterInfo( { player_data } ) {
     
+    if (!player_data) {
+        return <> </>
+    }
+    
     return (
         <div className={'char-info'}>
             
