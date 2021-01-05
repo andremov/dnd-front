@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { Panel } from "./Components/Panel";
-import { getAllPlayerData } from "./Services/api";
+import { fetchAllPlayerData, fetchOtherPlayers } from "./Services/api";
 
 export class App extends Component {
     
@@ -11,56 +11,65 @@ export class App extends Component {
         player_spells : [],
         player_notes : [],
         player_quests : [],
+        other_players : [],
     }
     
     setPlayerID = ( player_id ) => {
         this.setState({
             player_id
         })
+        fetchOtherPlayers().then(r => {
+            this.setState({
+                other_players : r
+            })
+        })
         this.updatePlayerData();
         setInterval(this.updatePlayerData, 5000)
     }
     
     updatePlayerData = () => {
-        getAllPlayerData(this.state.player_id).then(r => {
+        fetchAllPlayerData(this.state.player_id).then(r => {
             this.setState(r)
         })
     }
     
+    setInventory = (new_inventory) => {
+        this.setState({
+            player_inventory : new_inventory
+        })
+    }
+    
+    setNotes = (new_notes) => {
+        this.setState({
+            player_notes : new_notes
+        })
+    }
+    
+    
     render() {
-        const { player_id, player_data, player_items, player_spells, player_notes, player_quests } = this.state;
-        
+        const { player_id, player_data, player_items, player_spells, player_notes, player_quests, other_players } = this.state;
+        const panels = [ 1, 2, 3 ];
         return <Fragment>
-            <Panel
-                id={1}
-                player_id={player_id}
-                player_data={player_data}
-                player_inventory={player_items}
-                player_spells={player_spells}
-                player_notes={player_notes}
-                player_quests={player_quests}
-                setPlayerData={this.setPlayerID}
-            />
-            <Panel
-                id={2}
-                player_id={player_id}
-                player_data={player_data}
-                player_inventory={player_items}
-                player_spells={player_spells}
-                player_notes={player_notes}
-                player_quests={player_quests}
-                setPlayerData={this.setPlayerID}
-            />
-            <Panel
-                id={3}
-                player_id={player_id}
-                player_data={player_data}
-                player_inventory={player_items}
-                player_spells={player_spells}
-                player_notes={player_notes}
-                player_quests={player_quests}
-                setPlayerData={this.setPlayerID}
-            />
+            {
+                panels.map(item => {
+                    return <Panel
+                        id={item}
+                        key={item}
+                        
+                        player_id={player_id}
+                        player_data={player_data}
+                        player_inventory={player_items}
+                        player_spells={player_spells}
+                        player_notes={player_notes}
+                        player_quests={player_quests}
+                        other_players={other_players}
+                        
+                        setPlayerData={this.setPlayerID}
+                        setPlayerNotes={this.setNotes}
+                        setPlayerInventory={this.setInventory}
+                    />
+                })
+            }
         </Fragment>
         
     }

@@ -10,7 +10,7 @@ export function AbilityCard( { ability_data } ) {
     
     const { name, description } = ability_data
     
-    return <div className={'ability_info ' + (opened ? '' : 'closed')} onClick={openCallback}>
+    return <div className={'ability-card ' + (opened ? '' : 'closed')} onClick={openCallback}>
         <h1>{name}</h1>
         
         <div className={'info-section'}>

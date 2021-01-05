@@ -8,7 +8,7 @@ export const API = axios.create({
     responseType : 'json',
 });
 
-export function sendCharacter( object ) {
+export function createCharacter( object ) {
     return API.post('/players/', {
         ...object,
         stats : JSON.stringify(object.stats),
@@ -20,13 +20,13 @@ export function sendCharacter( object ) {
     })
 }
 
-export function findCharacter( codename ) {
+export function fetchCharacterID( codename ) {
     return API.get('/players/find', { params : { codename } }).then(r => {
         return r.data;
     })
 }
 
-export function getAllPlayerData( id ) {
+export function fetchAllPlayerData( id ) {
     return API.get('/players/all-data/' + id).then(r => {
         r.data.player_data.stats = JSON.parse(r.data.player_data.stats)
         return r.data;
@@ -39,8 +39,20 @@ export function createNote( data ) {
     })
 }
 
-export function modifyNote(id, data) {
-    return API.patch('/notes/'+id, data).then(r => {
+export function modifyNote( id, data ) {
+    return API.patch('/notes/' + id, data).then(r => {
+        return r.data;
+    })
+}
+
+export function fetchOtherPlayers() {
+    return API.get('/players/others/').then(r => {
+        return r.data;
+    })
+}
+
+export function doTrade( trade_data ) {
+    return API.post('/items/trade', trade_data).then(r => {
         return r.data;
     })
 }

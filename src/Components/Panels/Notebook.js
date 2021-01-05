@@ -3,27 +3,27 @@ import { NoteCard } from "../Cards/NoteCard";
 import { createNote } from "../../Services/api";
 import { Loading } from "../Loading";
 
-export function Notebook( { player_id, player_notes } ) {
+export function Notebook( { player_id, player_notes, setPlayerNotes } ) {
     return (
         <Fragment>
-            <NewNoteCard player_id={player_id} />
+            <NewNoteCard player_id={player_id} setNotes={setPlayerNotes} />
             {
                 player_notes.map(( item, i ) => {
-                    return <NoteCard key={i} data={item} />
+                    return <NoteCard key={i} data={item} setPlayerNotes={setPlayerNotes} />
                 })
             }
         </Fragment>
     );
 }
 
-function NewNoteCard( { player_id } ) {
+function NewNoteCard( { player_id, setNotes } ) {
     const [ title, setTitle ] = useState('');
     const [ progress, setProgress ] = useState(false);
     
     function sendCreateNote() {
         setProgress(true)
         createNote({ owner : player_id, name : title, data : '' }).then(r => {
-            console.log(r.message)
+            setNotes(r)
             setTitle('')
             setProgress(false)
         })

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { findCharacter } from "../../Services/api";
+import { fetchCharacterID } from "../../Services/api";
 import { CreatePlayer } from "./CreatePlayer";
 
 export function EnterForm( { setPlayerData } ) {
@@ -11,7 +11,7 @@ export function EnterForm( { setPlayerData } ) {
     }
     
     function requestPlayer() {
-        findCharacter(codename).then(r => {
+        fetchCharacterID(codename).then(r => {
             setPlayerData(r._id)
         })
     }

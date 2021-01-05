@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from "react";
 import { abilities, alignments, classes, races } from "../../Utils/Data";
 import { RollDie, validCharacter } from "../../Utils/Functions";
-import { sendCharacter } from "../../Services/api";
+import { createCharacter } from "../../Services/api";
 
 export class CreatePlayer extends Component {
     
@@ -110,7 +110,7 @@ export class CreatePlayer extends Component {
     }
     
     doSend = () => {
-        sendCharacter(this.state.formData).then(r => {
+        createCharacter(this.state.formData).then(r => {
             console.log(r.message)
             this.props.endCallback()
         })

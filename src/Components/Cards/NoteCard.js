@@ -1,15 +1,14 @@
-import React, { useState } from 'react';
-import { validCharacter } from "../../Utils/Functions";
+import React, { useRef, useState } from 'react';
+import { numLines, validCharacter } from "../../Utils/Functions";
 import { modifyNote } from "../../Services/api";
 import { Loading } from "../Loading";
 
 export function NoteCard( { data } ) {
+    const [ textAreaHeight, setTextAreaHeight ] = useState(50)
     const [ opened, setOpen ] = useState(false);
     const [ progress, setProgress ] = useState(false);
     const [ notes, setNotes ] = useState(data.data)
     const [ hasChanges, setHasChanges ] = useState(false)
-    
-    console.log( )
     
     function openCallback() {
         setOpen(!opened)
@@ -17,6 +16,7 @@ export function NoteCard( { data } ) {
     
     function handleChange( value ) {
         if ( validCharacter(value) ) {
+            setTextAreaHeight((numLines(value) + 4) * 13.65 * 1.4)
             setNotes(value)
             setHasChanges(true)
         }
@@ -32,13 +32,15 @@ export function NoteCard( { data } ) {
     }
     
     return (
-        <div className={'note-card ' + (opened ? '' : 'closed')} onClick={openCallback}>
+        <div
+            className={'note-card ' + (opened ? '' : 'closed')}
+            onClick={openCallback}
+            style={{ '--textAreaHeight' : textAreaHeight + 'px' }}
+        >
             <h1>{data.name}</h1>
             
             <textarea
-                style={{
-                    height: ((notes.split(/\r\n|\r|\n/).length+2)*13.83*1.4)+'px'
-                }}
+                style={{ '--textAreaHeight' : textAreaHeight + 'px' }}
                 onChange={( e ) => handleChange(e.target.value)}
                 onClick={e => e.stopPropagation()}
                 value={notes}
@@ -48,7 +50,7 @@ export function NoteCard( { data } ) {
             
             <button
                 disabled={!hasChanges || progress}
-                children={progress? <Loading /> : 'Save'}
+                children={progress ? <Loading /> : 'Save'}
                 onClick={sendNotes}
                 className={'primary'}
             />
