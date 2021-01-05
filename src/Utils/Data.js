@@ -8,6 +8,7 @@ import { RacesInfo } from "../Components/Panels/RacesInfo";
 import { AlignmentsInfo } from "../Components/Panels/AlignmentsInfo";
 import { AbilitiesInfo } from "../Components/Panels/AbilitiesInfo";
 import { Notebook } from "../Components/Panels/Notebook";
+import { RollInfo } from "../Components/Panels/RollInfo";
 
 export const skills = [
     // 0
@@ -587,11 +588,6 @@ export const classes = [
 
 const panels = [
     {
-        id : 3,
-        name : 'Player - Character',
-        panel : ( props ) => <CharacterInfo {...props} />
-    },
-    {
         id : 0,
         name : 'Wiki - Races',
         panel : ( props ) => <RacesInfo {...props} />
@@ -605,6 +601,11 @@ const panels = [
         id : 2,
         name : 'Wiki - Alignments',
         panel : ( props ) => <AlignmentsInfo {...props} />
+    },
+    {
+        id : 3,
+        name : 'Player - Character',
+        panel : ( props ) => <CharacterInfo {...props} />
     },
     {
         id : 4,
@@ -623,8 +624,8 @@ const panels = [
     },
     {
         id : 7,
-        name : 'Wiki - Ability Checks',
-        panel : ( props ) => <AbilitiesInfo {...props} />
+        name : 'Player - Ability Checks',
+        panel : ( props ) => <RollInfo {...props} />
     },
     {
         id : 8,
@@ -637,7 +638,7 @@ const panels = [
         panel : ( props ) => <Notebook {...props} />
     },
     {
-        id : 9,
+        id : 10,
         name : 'Player - Quests',
         panel : ( props ) => <Notebook {...props} />
     },
