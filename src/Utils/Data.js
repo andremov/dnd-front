@@ -1,12 +1,13 @@
 import React  from "react";
 import { CharacterInfo } from "../Components/Panels/CharacterInfo";
-import { Inventory } from "../Components/Cards/Inventory";
-import { Background } from "../Components/Cards/Background";
-import { Spellbook } from "../Components/Cards/Spellbook";
+import { Inventory } from "../Components/Panels/Inventory";
+import { Background } from "../Components/Panels/Background";
+import { Spellbook } from "../Components/Panels/Spellbook";
 import { ClassesInfo } from "../Components/Panels/ClassesInfo";
 import { RacesInfo } from "../Components/Panels/RacesInfo";
 import { AlignmentsInfo } from "../Components/Panels/AlignmentsInfo";
 import { AbilitiesInfo } from "../Components/Panels/AbilitiesInfo";
+import { Notebook } from "../Components/Panels/Notebook";
 
 export const skills = [
     // 0
@@ -587,52 +588,57 @@ export const classes = [
 export const panels = [
     {
         id : 3,
-        name : 'Character',
+        name : 'Player - Character',
         panel : (props) => <CharacterInfo {...props} />
     },
     {
         id : 0,
-        name : 'Races',
+        name : 'Wiki - Races',
         panel : (props) => <RacesInfo {...props} />
     },
     {
         id : 1,
-        name : 'Classes',
+        name : 'Wiki - Classes',
         panel : (props) => <ClassesInfo {...props} />
     },
     {
         id : 2,
-        name : 'Alignments',
+        name : 'Wiki - Alignments',
         panel : (props) => <AlignmentsInfo {...props} />
     },
     {
         id : 4,
-        name : 'Inventory',
+        name : 'Player - Inventory',
         panel : (props) => <Inventory {...props} />
     },
     {
         id : 5,
-        name : 'Spellbook',
+        name : 'Player - Spellbook',
         panel : (props) => <Spellbook {...props} />
     },
     {
         id : 6,
-        name : 'Abilities',
+        name : 'Wiki - Abilities',
         panel : (props) => <AbilitiesInfo {...props} />
     },
     {
         id : 7,
-        name : 'Ability Check',
+        name : 'Wiki - Ability Checks',
         panel : (props) => <AbilitiesInfo {...props} />
     },
     {
         id : 8,
-        name : 'Background',
-        panel : (props) => <AbilitiesInfo {...props} />
+        name : 'Player - Background',
+        panel : (props) => <Background {...props} />
     },
     {
         id : 9,
-        name : 'Notebook',
-        panel : (props) => <AbilitiesInfo {...props} />
+        name : 'Player - Notebook',
+        panel : (props) => <Notebook {...props} />
+    },
+    {
+        id : 9,
+        name : 'Player - Quests',
+        panel : (props) => <Notebook {...props} />
     },
 ]

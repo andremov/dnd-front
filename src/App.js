@@ -7,9 +7,12 @@ import { fetchInventory, fetchSpells, findCharacter } from "./Services/api";
 export class App extends Component {
     
     state = {
+        player_id : '',
         player_data : undefined,
         player_inventory : [],
         player_spells : [],
+        player_notes : [],
+        player_quests : [],
         
         panel_data : {
             name : 'loading',
@@ -26,23 +29,23 @@ export class App extends Component {
     }
     
     updatePlayerData = () => {
-        findCharacter(this.state.player_data.codename).then(r => {
-            this.setState({
-                player_data : r
-            })
-        })
-        
-        fetchInventory(this.state.player_data._id).then(r => {
-            this.setState({
-                player_inventory : r
-            })
-        })
-    
-        fetchSpells(this.state.player_data._id).then(r => {
-            this.setState({
-                player_spells : r
-            })
-        })
+        // findCharacter(this.state.player_data.codename).then(r => {
+        //     this.setState({
+        //         player_data : r
+        //     })
+        // })
+        //
+        // fetchInventory(this.state.player_data._id).then(r => {
+        //     this.setState({
+        //         player_inventory : r
+        //     })
+        // })
+        //
+        // fetchSpells(this.state.player_data._id).then(r => {
+        //     this.setState({
+        //         player_spells : r
+        //     })
+        // })
     }
     
     handleCard = ( { action, card_id, data } ) => {

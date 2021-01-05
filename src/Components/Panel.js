@@ -17,7 +17,7 @@ export function Panel( props ) {
                         Select panel...
                     </option>
                     
-                    {panels.map(( item, i ) => {
+                    {panels.sort((a,b) => a.name < b.name? -1 : 1).map(( item, i ) => {
                         return <option value={item.id} key={i}>
                             {item.name}
                         </option>

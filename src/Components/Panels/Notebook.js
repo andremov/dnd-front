@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { modifyCharacter } from "../../Services/api";
 
-export function Notes( { player_data } ) {
-    const [ notes, setNotes ] = useState(player_data.notes)
+export function Notebook( { player_data } ) {
+    const [ notes, setNotes ] = useState(player_data?.notes)
     const [hasChanges, setHasChanges] = useState(false)
     
     
@@ -28,7 +28,6 @@ export function Notes( { player_data } ) {
     
     return (
         <div className={'notes'}>
-            <h1>Notes</h1>
             <textarea
                 onChange={( e ) => handleChange(e.target.value)}
                 value={notes}
