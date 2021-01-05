@@ -51,7 +51,9 @@
 .spell-item, .inventory-item, .trade-item-card {
   display: flex;
   flex-direction: column;
-  min-height: 130px;
+  min-height: calc(var(--itemDataHeight) + 35px);
+  font-size: 16px;
+  line-height: 1.4;
   border-radius: 10px;
   border: 1px solid;
   overflow: hidden;
@@ -70,6 +72,10 @@
     color: white;
   }
 
+  > :nth-child(2) {
+    font-family: monospace;
+  }
+
   > :nth-child(3) {
     display: flex;
     justify-content: space-evenly;
@@ -85,6 +91,10 @@
       font-size: 1.5em;
     }
   }
+}
+
+.trade-item-card {
+  min-height: calc(var(--itemDataHeight) + 95px);
 }
 
 .race-card {

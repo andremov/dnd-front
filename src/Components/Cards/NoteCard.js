@@ -1,5 +1,5 @@
-import React, { useRef, useState } from 'react';
-import { numLines, validCharacter } from "../../Utils/Functions";
+import React, { useState } from 'react';
+import { textHeight, validCharacter } from "../../Utils/Functions";
 import { modifyNote } from "../../Services/api";
 import { Loading } from "../Loading";
 
@@ -16,7 +16,7 @@ export function NoteCard( { data } ) {
     
     function handleChange( value ) {
         if ( validCharacter(value) ) {
-            setTextAreaHeight((numLines(value) + 4) * 13.65 * 1.4)
+            setTextAreaHeight(textHeight(value))
             setNotes(value)
             setHasChanges(true)
         }
