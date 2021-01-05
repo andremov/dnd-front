@@ -61,9 +61,7 @@ export function RollInfo( { player_data } ) {
     
     
     return (
-        <div className={'roll_info'}>
-            
-            <h1>Ability Check</h1>
+        <div className={'ability-check-info'}>
             
             <select onChange={e => chooseAbility(e.target.value)} value={ability}>
                 <option value={-1}>
