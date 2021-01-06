@@ -6,18 +6,30 @@ import { Loading } from "../Loading";
 
 export function CharacterInfo( { player_id, player_data, setPlayerData } ) {
     
-    if (!player_id) {
+    if ( !player_id ) {
         return <EnterForm setPlayerData={setPlayerData} />
     }
     
-    if (!player_data) {
+    if ( !player_data ) {
         return <Loading />
     }
     
     return (
         <div className={'char-info'}>
             
-            <h1>{player_data.name + ' ' + player_data.family}</h1>
+            <div>
+                <h1>{player_data.name + ' ' + player_data.family}</h1>
+                
+                <Gem
+                    color={'red'}
+                    text={'Level ' + player_data.level}
+                    title={'Level'}
+                    type={2}
+                    side={'right'}
+                    blend={false}
+                    shadow={true}
+                />
+            </div>
             
             <div className={'section basic'}>
                 
@@ -72,18 +84,6 @@ export function CharacterInfo( { player_id, player_data, setPlayerData } ) {
             
             <div className={'section basic'}>
                 <h2>Basic Info</h2>
-                
-                <div className={'one-gem'}>
-                    <Gem
-                        color={'red'}
-                        text={'Level ' + player_data.level}
-                        title={'Level'}
-                        type={2}
-                        side={'right'}
-                        blend={false}
-                        shadow={true}
-                    />
-                </div>
                 
                 <div className={'two-gems'}>
                     <Gem
@@ -203,7 +203,7 @@ export function CharacterInfo( { player_id, player_data, setPlayerData } ) {
                     />
                 </div>
             </div>
-            
+        
         </div>
     );
 }
