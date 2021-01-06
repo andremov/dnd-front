@@ -1,5 +1,5 @@
 import React from 'react';
-import { abilities, alignments, classes, races } from "../../Utils/Data";
+import { getAbility, getAlignment, getClass, getRace } from "../../Utils/Data";
 import { Gem } from "../Gem";
 import { EnterForm } from "./EnterForm";
 import { Loading } from "../Loading";
@@ -54,7 +54,7 @@ export function CharacterInfo( { player_id, player_data, setPlayerData } ) {
                 <div className={'two-gems'}>
                     <Gem
                         color={'cyan'}
-                        text={races[player_data.race].name}
+                        text={getRace(player_data.race).name}
                         title={'Race'}
                         type={2}
                         side={'right'}
@@ -62,7 +62,7 @@ export function CharacterInfo( { player_id, player_data, setPlayerData } ) {
                     />
                     <Gem
                         color={'aqua'}
-                        text={classes[player_data.char_class].name}
+                        text={getClass(player_data.char_class).name}
                         title={'Class'}
                         type={2}
                         side={'right'}
@@ -73,7 +73,7 @@ export function CharacterInfo( { player_id, player_data, setPlayerData } ) {
                 <div className={'one-gem'}>
                     <Gem
                         color={'orange'}
-                        text={alignments[player_data.alignment].name}
+                        text={getAlignment(player_data.alignment).name}
                         title={'Alignment'}
                         type={2}
                         side={'right'}
@@ -98,7 +98,7 @@ export function CharacterInfo( { player_id, player_data, setPlayerData } ) {
                     />
                     <Gem
                         color={'red'}
-                        text={'1d' + classes[player_data.char_class].hit_dice}
+                        text={'1d' + getClass(player_data.char_class).hit_dice}
                         title={'Hit dice'}
                         type={8}
                         side={'right'}
@@ -137,8 +137,8 @@ export function CharacterInfo( { player_id, player_data, setPlayerData } ) {
                 <div className={'two-gems'}>
                     <Gem
                         color={'purple'}
-                        text={abilities[0].shortname + ': ' + player_data.stats[0]}
-                        title={abilities[0].name}
+                        text={getAbility(0).shortname + ': ' + player_data.stats[0]}
+                        title={getAbility(0).name}
                         type={2}
                         side={'right'}
                         blend={false}
@@ -147,31 +147,8 @@ export function CharacterInfo( { player_id, player_data, setPlayerData } ) {
                     />
                     <Gem
                         color={'purple'}
-                        text={abilities[1].shortname + ': ' + player_data.stats[1]}
-                        title={abilities[1].name}
-                        type={2}
-                        side={'right'}
-                        blend={false}
-                        shadow={true}
-                        full={true}
-                    />
-                </div>
-                
-                <div className={'two-gems'}>
-                    <Gem
-                        color={'purple'}
-                        text={abilities[2].shortname + ': ' + player_data.stats[2]}
-                        title={abilities[2].name}
-                        type={2}
-                        side={'right'}
-                        blend={false}
-                        shadow={true}
-                        full={true}
-                    />
-                    <Gem
-                        color={'purple'}
-                        text={abilities[3].shortname + ': ' + player_data.stats[3]}
-                        title={abilities[3].name}
+                        text={getAbility(1).shortname + ': ' + player_data.stats[1]}
+                        title={getAbility(1).name}
                         type={2}
                         side={'right'}
                         blend={false}
@@ -183,8 +160,8 @@ export function CharacterInfo( { player_id, player_data, setPlayerData } ) {
                 <div className={'two-gems'}>
                     <Gem
                         color={'purple'}
-                        text={abilities[4].shortname + ': ' + player_data.stats[4]}
-                        title={abilities[4].name}
+                        text={getAbility(2).shortname + ': ' + player_data.stats[2]}
+                        title={getAbility(2).name}
                         type={2}
                         side={'right'}
                         blend={false}
@@ -193,8 +170,31 @@ export function CharacterInfo( { player_id, player_data, setPlayerData } ) {
                     />
                     <Gem
                         color={'purple'}
-                        text={abilities[5].shortname + ': ' + player_data.stats[5]}
-                        title={abilities[5].name}
+                        text={getAbility(3).shortname + ': ' + player_data.stats[3]}
+                        title={getAbility(3).name}
+                        type={2}
+                        side={'right'}
+                        blend={false}
+                        shadow={true}
+                        full={true}
+                    />
+                </div>
+                
+                <div className={'two-gems'}>
+                    <Gem
+                        color={'purple'}
+                        text={getAbility(4).shortname + ': ' + player_data.stats[4]}
+                        title={getAbility(4).name}
+                        type={2}
+                        side={'right'}
+                        blend={false}
+                        shadow={true}
+                        full={true}
+                    />
+                    <Gem
+                        color={'purple'}
+                        text={getAbility(5).shortname + ': ' + player_data.stats[5]}
+                        title={getAbility(5).name}
                         type={2}
                         side={'right'}
                         blend={false}
