@@ -1,9 +1,9 @@
-import React, { Fragment } from 'react';
+import React  from 'react';
 
 export function Background({player_data}) {
     return (
-        <Fragment>
+        <div className={'bkg-card'}>
             {player_data?.background}
-        </Fragment>
+        </div>
     );
 }
