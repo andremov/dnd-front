@@ -3,7 +3,7 @@ import { fetchCharacterID } from "../../Services/api";
 import { CreatePlayer } from "./CreatePlayer";
 
 export function EnterForm( { setPlayerData } ) {
-    const [ codename, setCodename ] = useState('test_new_ui');
+    const [ codename, setCodename ] = useState('');
     const [ creatingPlayer, setCreatingPlayer ] = useState(false)
     
     if ( creatingPlayer ) {
