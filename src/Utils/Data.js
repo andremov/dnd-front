@@ -766,11 +766,13 @@ export function getSkills() {
     return skills;
 }
 
-export function getSkill( id ) {
+export function getSkill( pid ) {
+    let id = (typeof pid) !== 'number' ? parseInt(pid) : pid;
     return skills.filter(item => item.id === id)[0]
 }
 
-export function getSkillAbility( id ) {
+export function getSkillAbility( pid ) {
+    let id = (typeof pid) !== 'number' ? parseInt(pid) : pid;
     return abilities.filter(item => item.skills.includes(id))[0].id
 }
 
@@ -779,11 +781,13 @@ export function getAbilities() {
     return abilities;
 }
 
-export function getAbility( id ) {
+export function getAbility( pid ) {
+    let id = (typeof pid) !== 'number' ? parseInt(pid) : pid;
     return abilities.filter(item => item.id === id)[0]
 }
 
-export function getAbilitySkills( id ) {
+export function getAbilitySkills( pid ) {
+    let id = (typeof pid) !== 'number' ? parseInt(pid) : pid;
     return skills.filter((item => abilities[id].skills.includes(item.id)))
 }
 
@@ -791,7 +795,8 @@ export function getRaces() {
     return races;
 }
 
-export function getRace( id ) {
+export function getRace( pid ) {
+    let id = (typeof pid) !== 'number' ? parseInt(pid) : pid;
     return races.filter(item => item.id === id)[0]
 }
 
@@ -800,7 +805,8 @@ export function getAlignments() {
     return alignments;
 }
 
-export function getAlignment( id ) {
+export function getAlignment( pid ) {
+    let id = (typeof pid) !== 'number' ? parseInt(pid) : pid;
     return alignments.filter(item => item.id === id)[0]
 }
 
@@ -809,6 +815,7 @@ export function getClasses() {
     return classes;
 }
 
-export function getClass( id ) {
+export function getClass( pid ) {
+    let id = (typeof pid) !== 'number' ? parseInt(pid) : pid;
     return classes.filter(item => item.id === id)[0]
 }
